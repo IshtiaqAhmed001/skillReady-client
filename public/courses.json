@@ -1,0 +1,170 @@
+[
+  {
+    "title": "Modern JavaScript for Beginners",
+    "image": "https://i.ibb.co/whgK5sjd/javascript.webp",
+    "price": 49.99,
+    "duration": "30 hours",
+    "category": "Web Development",
+    "description": "Learn modern JavaScript (ES6+) from scratch and build dynamic, interactive web applications using hands-on projects.",
+    "isFeatured": true,
+    "instructor": {
+      "name": "Alex Johnson",
+      "email": "alex@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "React Mastery: From Basics to Advanced",
+    "image": "https://i.ibb.co/bgxksVVm/react.webp",
+    "price": 59.99,
+    "duration": "35 hours",
+    "category": "Frontend",
+    "description": "Master React.js with practical projects, hooks, context API, and routing. Learn to build fast, modern web apps.",
+    "isFeatured": true,
+    "instructor": {
+      "name": "Sophie Lee",
+      "email": "sophie@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "Node.js & Express API Development",
+    "image": "https://i.ibb.co/QF7NCkT7/nodejs.webp",
+    "price": 54.99,
+    "duration": "32 hours",
+    "category": "Backend",
+    "description": "Build scalable backend systems using Node.js, Express, and MongoDB. Learn CRUD, authentication, and deployment.",
+    "isFeatured": true,
+    "instructor": {
+      "name": "David Chen",
+      "email": "david@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "Full Stack Web Development Bootcamp",
+    "image": "https://i.ibb.co/d4WtK2yT/fullstack.webp",
+    "price": 79.99,
+    "duration": "50 hours",
+    "category": "Web Development",
+    "description": "Become a full-stack developer by learning React, Node.js, Express, and MongoDB. Build real-world applications from start to finish.",
+    "isFeatured": true,
+    "instructor": {
+      "name": "Emily Carter",
+      "email": "emily@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "UI/UX Design Essentials",
+    "image": "https://i.ibb.co/qLk3gGvb/uiux.webp",
+    "price": 44.99,
+    "duration": "25 hours",
+    "category": "Design",
+    "description": "Master Figma, color theory, typography, and responsive layout design to craft beautiful and functional interfaces.",
+    "isFeatured": false,
+    "instructor": {
+      "name": "Rachel Kim",
+      "email": "rachel@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "Python Programming for Everyone",
+    "image": "https://i.ibb.co/5XMbSBbT/python.webp",
+    "price": 39.99,
+    "duration": "28 hours",
+    "category": "Programming",
+    "description": "Learn Python from zero. Understand syntax, data structures, and work on mini projects like calculators and web scrapers.",
+    "isFeatured": false,
+    "instructor": {
+      "name": "Michael Brown",
+      "email": "michael@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "Digital Marketing Fundamentals",
+    "image": "https://i.ibb.co/JWkMXT5n/digitalmarketing.webp",
+    "price": 34.99,
+    "duration": "20 hours",
+    "category": "Marketing",
+    "description": "Get hands-on with SEO, Google Ads, and social media campaigns to build your digital marketing strategy.",
+    "isFeatured": false,
+    "instructor": {
+      "name": "Priya Sharma",
+      "email": "priya@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "Advanced CSS & Tailwind Masterclass",
+    "image": "https://i.ibb.co/jkKyYSVP/tailwind.webp",
+    "price": 42.99,
+    "duration": "24 hours",
+    "category": "Frontend",
+    "description": "Take your CSS skills to the next level with modern layouts, Tailwind CSS, animations, and responsive design.",
+    "isFeatured": false,
+    "instructor": {
+      "name": "John Park",
+      "email": "john@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "MongoDB for Developers",
+    "image": "https://i.ibb.co/5WCqQLBY/mongodb.webp",
+    "price": 49.99,
+    "duration": "22 hours",
+    "category": "Database",
+    "description": "Learn MongoDB fundamentals, CRUD operations, aggregation pipelines, and schema design for real-world apps.",
+    "isFeatured": false,
+    "instructor": {
+      "name": "Sara Ahmed",
+      "email": "sara@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "DevOps with Docker & CI/CD",
+    "image": "https://i.ibb.co/Dgt6H3KT/devops.webp",
+    "price": 64.99,
+    "duration": "30 hours",
+    "category": "DevOps",
+    "description": "Understand Docker, GitHub Actions, and deployment pipelines to automate your application delivery process.",
+    "isFeatured": false,
+    "instructor": {
+      "name": "Nate Williams",
+      "email": "nate@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "Data Analysis with Excel & Power BI",
+    "image": "https://i.ibb.co/h1Cy67BR/data-Analysis.webp",
+    "price": 39.99,
+    "duration": "26 hours",
+    "category": "Data Analysis",
+    "description": "Learn to clean, visualize, and analyze data using Microsoft Excel and Power BI dashboards.",
+    "isFeatured": false,
+    "instructor": {
+      "name": "Liam Turner",
+      "email": "liam@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  },
+  {
+    "title": "AI & Machine Learning Crash Course",
+    "image": "https://i.ibb.co/fzc2jdJJ/ai.webp",
+    "price": 89.99,
+    "duration": "40 hours",
+    "category": "AI & ML",
+    "description": "Kickstart your AI journey. Understand supervised learning, neural networks, and real-world ML applications.",
+    "isFeatured": true,
+    "instructor": {
+      "name": "Dr. Olivia White",
+      "email": "olivia@skillready.com",
+      "photo": "https://i.ibb.co/S4vVNDh5/user.jpg"
+    }
+  }
+]
