@@ -7,22 +7,29 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Home from "./Pages/Home/Home.jsx";
 import AllCourses from "./Pages/AllCourses/AllCourses.jsx";
+import CourseDetails from "./Pages/CourseDetails/CourseDetails.jsx";
+import AuthProvider from "./contexts/AuthProvider.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
     children: [
-      { index: true, Component: Home },
-      { path: '/allCourses', Component: AllCourses },
+      {
+        index: true,
+        loader: () => fetch("http://localhost:3000/courses"),
+        Component: Home,
+      },
+      { path: "/allCourses", Component: AllCourses },
+      { path: "/allCourses/:id", Component: CourseDetails },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}>
-      <RootLayout></RootLayout>
-    </RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
   </StrictMode>
 );
