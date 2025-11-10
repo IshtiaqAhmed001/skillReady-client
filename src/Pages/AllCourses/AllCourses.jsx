@@ -2,7 +2,9 @@ import React, { use } from 'react';
 import SingleCourse from '../../components/SingleCourse/SingleCourse';
 
 
-const allCoursesPromise = fetch('/courses.json').then(res=>res.json());
+const allCoursesPromise = fetch("http://localhost:3000/courses").then((res) =>
+  res.json()
+);
 const AllCourses = () => {
     const courses = use(allCoursesPromise);
     return (
