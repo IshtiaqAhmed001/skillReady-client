@@ -1,8 +1,11 @@
+import { use } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Login = () => {
-  
+  const {setUser,signInWithGoogle} = use(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,8 +14,16 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Call your Google login function here
-    console.log("Login with Google");
+  signInWithGoogle()
+  .then(result=>{
+    setUser(result.user);
+    navigate('/')
+  }
+  )
+  .catch(error=>{
+    console.log(error)
+  })
+    
   };
 
   return (
