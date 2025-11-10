@@ -9,6 +9,8 @@ import Home from "./Pages/Home/Home.jsx";
 import AllCourses from "./Pages/AllCourses/AllCourses.jsx";
 import CourseDetails from "./Pages/CourseDetails/CourseDetails.jsx";
 import AuthProvider from "./contexts/AuthProvider.jsx";
+import Login from "./Pages/Login/Login.jsx";
+import Register from "./Pages/Register/Register.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       { path: "/allCourses", Component: AllCourses },
       { path: "/allCourses/:id", Component: CourseDetails },
     ],
+  },
+  {
+    path: "/login",
+    Component: Login,
+  },
+  {
+    path: "/register",
+    Component: Register,
   },
 ]);
 
