@@ -11,6 +11,8 @@ import CourseDetails from "./Pages/CourseDetails/CourseDetails.jsx";
 import AuthProvider from "./contexts/AuthProvider.jsx";
 import Login from "./Pages/Login/Login.jsx";
 import Register from "./Pages/Register/Register.jsx";
+import DashboardLayout from "./Layouts/DashboardLayout/DashboardLayout.jsx";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,12 +29,18 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
+    path: "/auth/login",
     Component: Login,
   },
   {
-    path: "/register",
+    path: "/auth/register",
     Component: Register,
+  },
+  {
+    path: "/dashboard",
+    element:<PrivateRoute>
+      <DashboardLayout></DashboardLayout>
+    </PrivateRoute>
   },
 ]);
 

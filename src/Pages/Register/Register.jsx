@@ -1,17 +1,32 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../../contexts/AuthContext";
 
-const Register = ({ onRegister }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [photo, setPhoto] = useState("");
-  const [password, setPassword] = useState("");
+const Register = () => {
+  const {registerUser,user,setUser,loading,setLoading,updateUser}=use(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Call your register function here
-    onRegister({ name, email, photo, password });
+  
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const photo = e.target.photo.value;
+    const password = e.target.password.value;
+    
+    registerUser(email,password)
+    .then(result=>{
+      const user = result.user;
+      updateUser({...user,displayName:name,photoURL:photo});
+      navigate(`${location.state?location.state:'/'}`)
+
+    }).catch(error=>{
+      console.log(error)
+    })
+   
   };
 
   const handleGoogleRegister = () => {
@@ -35,12 +50,9 @@ const Register = ({ onRegister }) => {
             </label>
             <input
               type="text"
-              id="name"
+              name="name"
               placeholder="Your full name"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
             />
           </div>
 
@@ -50,12 +62,9 @@ const Register = ({ onRegister }) => {
             </label>
             <input
               type="email"
-              id="email"
+              name="email"
               placeholder="you@example.com"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
             />
           </div>
 
@@ -65,11 +74,9 @@ const Register = ({ onRegister }) => {
             </label>
             <input
               type="text"
-              id="photo"
+              name="photo"
               placeholder="https://example.com/photo.jpg"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={photo}
-              onChange={(e) => setPhoto(e.target.value)}
             />
           </div>
 
@@ -79,11 +86,9 @@ const Register = ({ onRegister }) => {
             </label>
             <input
               type="password"
-              id="password"
+              name="password"
               placeholder="Enter your password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>

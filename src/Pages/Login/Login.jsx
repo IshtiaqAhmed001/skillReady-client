@@ -1,15 +1,30 @@
 import { use } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Login = () => {
-  const {setUser,signInWithGoogle} = use(AuthContext);
+  const {setUser,loginUser,signInWithGoogle} = use(AuthContext);
+  const location =useLocation();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Call your login function here
+   
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+   loginUser(email,password)
+   .then(result=>{
+   setUser(result.user);
+   console.log('user logged in successfully!')
+   navigate(`${location.state?location.state:'/'}`);
+   })
+   .catch(error=>{
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode,errorMessage)
+   })
     
   };
 
@@ -42,7 +57,7 @@ const Login = () => {
             </label>
             <input
               type="email"
-              id="email"
+              name="email"
               placeholder="you@example.com"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
@@ -55,7 +70,7 @@ const Login = () => {
             </label>
             <input
               type="password"
-              id="password"
+              name="password"
               placeholder="Enter your password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
