@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:3000/courses"),
+        loader: () => fetch("http://localhost:3000/popular-courses"),
         Component: Home,
       },
       { path: "/allCourses", Component: AllCourses },

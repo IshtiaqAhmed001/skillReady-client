@@ -9,7 +9,7 @@ const { _id, title, instructor, category, image, price, rating } = course;
 
   const handleViewDetails = (id) => {
 
-   navigate(`allCourses/${id}`);
+   navigate(`/allCourses/${id}`);
   };
 
   return (

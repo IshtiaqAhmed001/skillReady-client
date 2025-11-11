@@ -20,7 +20,10 @@ const AllCourses = () => {
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 '>
 {
-    courses.map(course=><SingleCourse course={course}></SingleCourse>)
+    courses.map(course=><SingleCourse 
+      key={course._id}
+    course={course}
+    ></SingleCourse>)
 }
         </div>
       </div>
