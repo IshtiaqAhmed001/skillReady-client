@@ -2,8 +2,10 @@ import React from "react";
 
 const Loader = () => {
   return (
-    <div>
-      <h1>Loading............</h1>
+    <div className="flex justify-center items-center h-[70vh]">
+      <p className="text-gray-500 text-xl animate-pulse">
+        Loading ...
+      </p>
     </div>
   );
 };
