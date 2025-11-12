@@ -43,7 +43,7 @@ const AddCourse = () => {
         .post("http://localhost:3000/courses", newCourse)
         .then((result) => {
           console.log(result.data);
-          console.log("New Course added successfully!")
+          console.log("New Course added successfully!");
         })
         .catch((error) => {
           console.log(error);
@@ -54,7 +54,7 @@ const AddCourse = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-2">
-        <FaPlusCircle className="text-blue-600" /> Add a New Course
+        <FaPlusCircle className="text-blue-900" /> Add a New Course
       </h1>
 
       <div className="bg-blue-50 rounded-2xl shadow-sm border border-blue-100 p-8">
@@ -191,7 +191,7 @@ const AddCourse = () => {
           <div className="md:col-span-2 text-center mt-4">
             <button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-medium transition-all"
+              className="bg-blue-900 cursor-pointer hover:bg-blue-800 text-white px-8 py-3 rounded-xl font-medium transition-all"
             >
               Add Course
             </button>

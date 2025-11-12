@@ -1,10 +1,11 @@
-import React, { use } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
-  const { user, logoutUser } = use(AuthContext);
+  const { user, logoutUser } = useContext(AuthContext);
 
   const links = (
     <>
@@ -14,8 +15,8 @@ const Navbar = () => {
           className={({ isActive }) =>
             `px-3 py-2 rounded-md font-medium transition ${
               isActive
-                ? "bg-indigo-100 text-indigo-700"
-                : "text-gray-700 hover:bg-gray-100"
+                ? "bg-blue-50 text-blue-900"
+                : "text-gray-700 hover:bg-indigo-50 hover:text-blue-900"
             }`
           }
         >
@@ -28,8 +29,8 @@ const Navbar = () => {
           className={({ isActive }) =>
             `px-3 py-2 rounded-md font-medium transition ${
               isActive
-                ? "bg-indigo-100 text-indigo-700"
-                : "text-gray-700 hover:bg-gray-100"
+                ? "bg-indigo-100 text-blue-900"
+                : "text-gray-700 hover:bg-indigo-50 hover:text-blue-900"
             }`
           }
         >
@@ -43,8 +44,8 @@ const Navbar = () => {
             className={({ isActive }) =>
               `px-3 py-2 rounded-md font-medium transition ${
                 isActive
-                  ? "bg-indigo-100 text-indigo-700"
-                  : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-indigo-100 text-blue-900"
+                  : "text-gray-700 hover:bg-indigo-50 hover:text-blue-900"
               }`
             }
           >
@@ -57,12 +58,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logoutUser()
-      .then(() => {
-        console.log("User logged out successfully!");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then(() => console.log("User logged out successfully!"))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -73,7 +70,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link
               to="/"
-              className="text-indigo-600 text-2xl font-bold tracking-wider hover:text-indigo-500 transition"
+              className="text-primary text-2xl font-bold tracking-wider hover:text-blue-900 transition"
             >
               SkillReady
             </Link>
@@ -88,8 +85,16 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-2 relative">
-                <FaUserCircle className="text-indigo-400 w-8 h-8" />
-                <span className="text-gray-800 font-medium">{user.name}</span>
+                {user ? (
+                  <div>
+                    <img src={user.photoURL} className="w-8 h-8 rounded-full" alt="" />
+                  </div>
+                ) : (
+                  <FaUserCircle className="text-primary w-8 h-8" />
+                )}
+                <span className="text-gray-800 font-medium">
+                  {user?.displayName}
+                </span>
                 <button
                   onClick={handleLogout}
                   className="ml-2 bg-red-100 hover:bg-red-200 text-red-600 px-3 py-1 rounded-md text-sm transition"
@@ -100,7 +105,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/auth/login"
-                className="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 px-4 py-2 rounded-lg font-medium transition"
+                className="bg-primary text-white hover:bg-indigo-800 px-4 py-2 rounded-lg font-medium transition"
               >
                 Login
               </Link>

@@ -29,10 +29,10 @@ const AllCourses = () => {
     <div className="max-w-11/12 mx-auto px-4 md:px-8 py-10">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800">
           Skills to Transform Your Career and Life
         </h1>
-        <p className="text-lg md:text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
+        <p className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
           From creative skills to technical expertise, SkillReady helps you
           learn from the best — anytime, anywhere.
         </p>

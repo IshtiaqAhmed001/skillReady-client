@@ -21,7 +21,7 @@ const { _id, title, instructor, category, image, price, rating } = course;
           alt={title}
           className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
         />
-        <span className="absolute top-2 left-2 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
+        <span className="absolute top-2 left-2 bg-blue-900 text-white text-xs font-semibold px-2 py-1 rounded-full">
           {category}
         </span>
       </div>
@@ -55,7 +55,7 @@ const { _id, title, instructor, category, image, price, rating } = course;
         {/* Action Button */}
         <button
           onClick={()=>handleViewDetails(_id)}
-          className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-sm font-medium transition-all"
+          className="mt-4 w-full btn btn-primary hover:bg-blue-800 text-white py-2 rounded-lg text-sm font-medium transition-all"
         >
           View Details
         </button>

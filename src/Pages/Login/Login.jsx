@@ -4,41 +4,38 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Login = () => {
-  const {setUser,loginUser,signInWithGoogle} = use(AuthContext);
-  const location =useLocation();
+  const { setUser, loginUser, signInWithGoogle } = use(AuthContext);
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-   loginUser(email,password)
-   .then(result=>{
-   setUser(result.user);
-   console.log('user logged in successfully!')
-   navigate(`${location.state?location.state:'/'}`);
-   })
-   .catch(error=>{
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode,errorMessage)
-   })
-    
+    loginUser(email, password)
+      .then((result) => {
+        setUser(result.user);
+        console.log("user logged in successfully!");
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
 
   const handleGoogleLogin = () => {
-  signInWithGoogle()
-  .then(result=>{
-    setUser(result.user);
-    navigate('/')
-  }
-  )
-  .catch(error=>{
-    console.log(error)
-  })
-    
+    signInWithGoogle()
+      .then((result) => {
+        setUser(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -79,7 +76,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-all"
+            className="w-full bg-blue-600 hover:bg-blue-900 text-white py-2 rounded-lg font-medium transition-all"
           >
             Login
           </button>

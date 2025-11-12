@@ -21,7 +21,7 @@ const EnrolledCourses = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-2">
-        <FaBook className="text-blue-600" /> My Enrolled Courses
+        <FaBook className="text-blue-900" /> My Enrolled Courses
       </h1>
 
       {enrolled.length === 0 ? (

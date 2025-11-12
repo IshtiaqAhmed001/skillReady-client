@@ -35,7 +35,7 @@ const DashboardHome = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         <div className="bg-blue-50 rounded-2xl p-6 shadow hover:shadow-md transition">
           <div className="flex items-center gap-4">
-            <FaBook className="text-blue-600 w-8 h-8" />
+            <FaBook className="text-blue-900 w-8 h-8" />
             <div>
               <p className="text-gray-500">Added Courses</p>
               <p className="text-2xl font-bold text-gray-800">

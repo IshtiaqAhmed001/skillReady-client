@@ -10,8 +10,8 @@ import {
 import { AuthContext } from "../../contexts/AuthContext";
 
 const DashboardLayout = () => {
-  const {logoutUser}=use(AuthContext);
-  
+  const { logoutUser } = use(AuthContext);
+
   const handleLogout = () => {
     logoutUser()
       .then(() => {
@@ -27,7 +27,7 @@ const DashboardLayout = () => {
       <aside className="col-span-3 lg:col-span-2 bg-white shadow-md border-r border-gray-100 p-6 flex flex-col justify-between">
         <div>
           {/* Logo */}
-          <h1 className="text-2xl font-bold text-blue-600 mb-10 text-center">
+          <h1 className="text-2xl font-bold text-blue-900 mb-10 text-center">
             Dashboard
           </h1>
 
@@ -38,7 +38,7 @@ const DashboardLayout = () => {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition ${
                   isActive
-                    ? "bg-blue-100 text-blue-700"
+                    ? "bg-blue-100 text-blue-900"
                     : "text-gray-700 hover:bg-gray-100"
                 }`
               }
@@ -51,7 +51,7 @@ const DashboardLayout = () => {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition ${
                   isActive
-                    ? "bg-blue-100 text-blue-700"
+                    ? "bg-blue-100 text-blue-900"
                     : "text-gray-700 hover:bg-gray-100"
                 }`
               }
@@ -64,7 +64,7 @@ const DashboardLayout = () => {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition ${
                   isActive
-                    ? "bg-blue-100 text-blue-700"
+                    ? "bg-blue-100 text-blue-900"
                     : "text-gray-700 hover:bg-gray-100"
                 }`
               }
@@ -77,7 +77,7 @@ const DashboardLayout = () => {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition ${
                   isActive
-                    ? "bg-blue-100 text-blue-700"
+                    ? "bg-blue-100 text-blue-900"
                     : "text-gray-700 hover:bg-gray-100"
                 }`
               }
@@ -89,8 +89,9 @@ const DashboardLayout = () => {
 
         {/* Logout */}
         <button
-        onClick={handleLogout}
-         className="flex items-center gap-3 text-red-600 font-medium hover:text-red-700 mt-10 px-4 py-3 rounded-lg transition cursor-pointer">
+          onClick={handleLogout}
+          className="flex items-center gap-3 text-red-600 font-medium hover:text-red-700 mt-10 px-4 py-3 rounded-lg transition cursor-pointer"
+        >
           <FaSignOutAlt /> Logout
         </button>
       </aside>
@@ -106,6 +107,3 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
-
-
-

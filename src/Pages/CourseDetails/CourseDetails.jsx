@@ -12,7 +12,6 @@ import {
 const CourseDetails = () => {
   const { id } = useParams();
   const [course, setCourse] = useState(null);
-    
 
   useEffect(() => {
     axios
@@ -37,12 +36,10 @@ const CourseDetails = () => {
   const { title, image, price, duration, category, description, instructor } =
     course;
 
-  const handleEnrollNow =async (id)=>{
-   const result =await axios.post(`http://localhost:3000/enroll`,{id});
-   console.log('coursed enrolled',result.data)
-  }
-
-
+  const handleEnrollNow = async (id) => {
+    const result = await axios.post(`http://localhost:3000/enroll`, { id });
+    console.log("coursed enrolled", result.data);
+  };
 
   return (
     <div className="max-w-11/12 mx-auto px-6 py-12">
@@ -71,7 +68,7 @@ const CourseDetails = () => {
 
           <div className="mt-6 flex flex-wrap gap-5 text-gray-700">
             <span className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg text-sm">
-              <FaClock className="text-blue-600" /> Duration: {duration}
+              <FaClock className="text-blue-900" /> Duration: {duration}
             </span>
             <span className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg text-sm">
               <FaDollarSign className="text-green-600" /> Price: ${price}
@@ -95,19 +92,16 @@ const CourseDetails = () => {
           </div>
 
           <button
-          onClick={()=>{handleEnrollNow(id)}}
-           className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition-all">
+            onClick={() => {
+              handleEnrollNow(id);
+            }}
+            className="w-full bg-blue-900 hover:bg-blue-800 cursor-pointer text-white py-3 rounded-xl font-medium transition-all"
+          >
             Enroll Now
           </button>
         </div>
       </div>
 
-      {/* Footer Section */}
-      <div className="mt-12 text-center border-t border-gray-200 pt-6">
-        <p className="text-gray-500 text-sm">
-          © 2025 SkillReady — Empowering learners worldwide 🌏
-        </p>
-      </div>
     </div>
   );
 };
