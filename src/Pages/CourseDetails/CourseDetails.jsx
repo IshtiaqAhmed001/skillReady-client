@@ -12,6 +12,7 @@ import {
 const CourseDetails = () => {
   const { id } = useParams();
   const [course, setCourse] = useState(null);
+    
 
   useEffect(() => {
     axios
@@ -33,9 +34,15 @@ const CourseDetails = () => {
       </div>
     );
   }
-
   const { title, image, price, duration, category, description, instructor } =
     course;
+
+  const handleEnrollNow =async (id)=>{
+   const result =await axios.post(`http://localhost:3000/enroll`,{id});
+   console.log('coursed enrolled',result.data)
+  }
+
+
 
   return (
     <div className="max-w-11/12 mx-auto px-6 py-12">
@@ -87,7 +94,9 @@ const CourseDetails = () => {
             </div>
           </div>
 
-          <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition-all">
+          <button
+          onClick={()=>{handleEnrollNow(id)}}
+           className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition-all">
             Enroll Now
           </button>
         </div>

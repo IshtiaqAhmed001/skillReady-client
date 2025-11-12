@@ -13,6 +13,7 @@ import Login from "./Pages/Login/Login.jsx";
 import Register from "./Pages/Register/Register.jsx";
 import DashboardLayout from "./Layouts/DashboardLayout/DashboardLayout.jsx";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
+import EnrolledCourses from "./Pages/EnrolledCourses/EnrolledCourses.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,14 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element:<PrivateRoute>
       <DashboardLayout></DashboardLayout>
-    </PrivateRoute>
+    </PrivateRoute>,
+    children:[
+      {path:'enrolledCourses',
+        element:<PrivateRoute>
+          <EnrolledCourses></EnrolledCourses>
+        </PrivateRoute>
+      }
+    ]
   },
 ]);
 

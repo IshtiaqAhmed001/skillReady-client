@@ -18,6 +18,11 @@ const AllCourses = () => {
             professional development.
           </p>
         </div>
+        <div>
+          <ul>
+            <li></li>
+          </ul>
+        </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 '>
 {
     courses.map(course=><SingleCourse 
