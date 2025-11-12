@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import { NavLink, Outlet } from "react-router";
 import {
   FaBook,
@@ -7,8 +7,20 @@ import {
   FaUserGraduate,
   FaHome,
 } from "react-icons/fa";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const DashboardLayout = () => {
+  const {logoutUser}=use(AuthContext);
+  
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => {
+        console.log("User logged out successfully!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="grid grid-cols-12 min-h-screen bg-gray-50">
       {/* Sidebar */}
@@ -76,7 +88,9 @@ const DashboardLayout = () => {
         </div>
 
         {/* Logout */}
-        <button className="flex items-center gap-3 text-red-600 font-medium hover:text-red-700 mt-10 px-4 py-3 rounded-lg transition">
+        <button
+        onClick={handleLogout}
+         className="flex items-center gap-3 text-red-600 font-medium hover:text-red-700 mt-10 px-4 py-3 rounded-lg transition cursor-pointer">
           <FaSignOutAlt /> Logout
         </button>
       </aside>

@@ -2,9 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 const MyAddedCourses = () => {
   const { user } = useContext(AuthContext);
+  const navigate =useNavigate();
   const [myCourses, setMyCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(null);
 
@@ -45,7 +47,10 @@ if(result.data.modifiedCount){
 catch(error){
     console.log('Error updating course!: ',error)
 }
+  }
 
+  const handleView =(id)=>{
+    navigate(`/allCourses/${id}`);
 
   }
 
@@ -102,7 +107,7 @@ catch(error){
                     ${course.price}
                   </td>
                   <td className="px-6 py-4 flex justify-center items-center gap-2">
-                    <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-md flex items-center gap-1 transition">
+                    <button onClick={()=>handleView(course._id)} className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-md flex items-center gap-1 transition">
                       <FaEye /> View
                     </button>
                     <button
