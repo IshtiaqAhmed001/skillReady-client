@@ -14,6 +14,8 @@ import Register from "./Pages/Register/Register.jsx";
 import DashboardLayout from "./Layouts/DashboardLayout/DashboardLayout.jsx";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 import EnrolledCourses from "./Pages/EnrolledCourses/EnrolledCourses.jsx";
+import AddCourse from "./Pages/AddCourse/AddCourse.jsx";
+import MyAddedCourses from "./Pages/MyAddedCourses/MyAddedCourses.jsx";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +49,17 @@ const router = createBrowserRouter([
         element:<PrivateRoute>
           <EnrolledCourses></EnrolledCourses>
         </PrivateRoute>
-      }
+      },
+      {path:'addCourse',
+        element:<PrivateRoute>
+          <AddCourse></AddCourse>
+        </PrivateRoute>
+      },
+      {path:'addedCourses',
+        element:<PrivateRoute>
+         <MyAddedCourses></MyAddedCourses>
+        </PrivateRoute>
+      },
     ]
   },
 ]);

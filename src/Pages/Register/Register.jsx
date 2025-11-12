@@ -4,34 +4,50 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Register = () => {
-  const {registerUser,user,setUser,loading,setLoading,updateUser}=use(AuthContext);
+  const {
+    registerUser,
+    signInWithGoogle,
+    user,
+    setUser,
+    loading,
+    setLoading,
+    updateUser,
+  } = use(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const name = e.target.name.value;
     const email = e.target.email.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
-    
-    registerUser(email,password)
-    .then(result=>{
-      const user = result.user;
-      updateUser({...user,displayName:name,photoURL:photo});
-      navigate(`${location.state?location.state:'/'}`)
 
-    }).catch(error=>{
-      console.log(error)
-    })
-   
+    registerUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        updateUser({ ...user, displayName: name, photoURL: photo }).then(() => {
+          setUser({ ...user, displayName: name, photoURL: photo });
+          console.log("Registration successful");
+        });
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleGoogleRegister = () => {
-    // Call your Google auth function here
-    console.log("Register with Google");
+    signInWithGoogle()
+      .then((result) => {
+        setUser(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

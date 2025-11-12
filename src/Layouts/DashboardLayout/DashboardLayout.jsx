@@ -48,7 +48,7 @@ const DashboardLayout = () => {
             </NavLink>
 
             <NavLink
-              to="/dashboard/add-course"
+              to="/dashboard/addCourse"
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition ${
                   isActive
@@ -61,7 +61,7 @@ const DashboardLayout = () => {
             </NavLink>
 
             <NavLink
-              to="/dashboard/my-courses"
+              to="/dashboard/addedCourses"
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition ${
                   isActive
