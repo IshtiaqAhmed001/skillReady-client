@@ -16,6 +16,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 import EnrolledCourses from "./Pages/EnrolledCourses/EnrolledCourses.jsx";
 import AddCourse from "./Pages/AddCourse/AddCourse.jsx";
 import MyAddedCourses from "./Pages/MyAddedCourses/MyAddedCourses.jsx";
+import DashboardHome from "./Pages/DashboardHome/DashboardHome.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
       <DashboardLayout></DashboardLayout>
     </PrivateRoute>,
     children:[
+      {index:'true',
+        element:<PrivateRoute>
+         <DashboardHome/>
+        </PrivateRoute>
+      },
       {path:'enrolledCourses',
         element:<PrivateRoute>
           <EnrolledCourses></EnrolledCourses>
