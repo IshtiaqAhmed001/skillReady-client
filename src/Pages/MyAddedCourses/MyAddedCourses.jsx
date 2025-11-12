@@ -6,6 +6,7 @@ import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 const MyAddedCourses = () => {
   const { user } = useContext(AuthContext);
   const [myCourses, setMyCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
   useEffect(() => {
     if (user?.email) {
@@ -14,7 +15,39 @@ const MyAddedCourses = () => {
         .then((res) => setMyCourses(res.data))
         .catch((err) => console.log(err));
     }
-  }, [user]);
+  }, [user,myCourses]);
+
+  const openModal = (course) => {
+    setSelectedCourse(course);
+    document.getElementById("update_modal").showModal();
+  };
+
+  const handleUpdate = async (e)=>{
+e.preventDefault();
+
+const title = e.target.title.value;
+const category = e.target.category.value;
+const price = e.target.price.value;
+const image = e.target.image.value;
+const description = e.target.description.value;
+
+try{
+    const updatedCourse ={title,category,price,image,description}
+
+const result = await axios.put(
+  `http://localhost:3000/courses/${selectedCourse._id}`,updatedCourse
+);
+if(result.data.modifiedCount){
+    alert('Course updated successfully!')
+}
+
+}
+catch(error){
+    console.log('Error updating course!: ',error)
+}
+
+
+  }
 
   return (
     <div className="max-w-11/12 mx-auto my-10">
@@ -69,28 +102,16 @@ const MyAddedCourses = () => {
                     ${course.price}
                   </td>
                   <td className="px-6 py-4 flex justify-center items-center gap-2">
-                    <button
-                      className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-md flex items-center gap-1 transition"
-                      onClick={() => {
-                        /* View Details handler */
-                      }}
-                    >
+                    <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-md flex items-center gap-1 transition">
                       <FaEye /> View
                     </button>
                     <button
                       className="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-md flex items-center gap-1 transition"
-                      onClick={() => {
-                        /* Update handler */
-                      }}
+                      onClick={() => openModal(course)}
                     >
                       <FaEdit /> Update
                     </button>
-                    <button
-                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md flex items-center gap-1 transition"
-                      onClick={() => {
-                        /* Delete handler */
-                      }}
-                    >
+                    <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md flex items-center gap-1 transition">
                       <FaTrash /> Delete
                     </button>
                   </td>
@@ -100,6 +121,65 @@ const MyAddedCourses = () => {
           </table>
         </div>
       )}
+
+    
+      <dialog id="update_modal" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg mb-4">Update Course</h3>
+
+          {selectedCourse && (
+            <form
+             onSubmit={handleUpdate}
+              className="grid grid-cols-1 gap-3"
+            >
+              <input
+                type="text"
+                defaultValue={selectedCourse.title}
+                placeholder="Title"
+                name="title"
+                className="input input-bordered w-full"
+              />
+              <input
+                type="text"
+                name="category"
+                defaultValue={selectedCourse.category}
+                placeholder="Category"
+                className="input input-bordered w-full"
+              />
+              <input
+                type="number"
+                name="price"
+                defaultValue={selectedCourse.price}
+                placeholder="Price"
+                className="input input-bordered w-full"
+              />
+              <input
+                type="text"
+                name="image"
+                defaultValue={selectedCourse.image}
+                placeholder="Image URL"
+                className="input input-bordered w-full"
+              />
+              <textarea
+              name="description"
+                defaultValue={selectedCourse.description}
+                placeholder="Description"
+                className="textarea textarea-bordered w-full"
+              ></textarea>
+
+              <button type="submit" className="btn btn-primary mt-2">
+                Update Course
+              </button>
+            </form>
+          )}
+
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };
