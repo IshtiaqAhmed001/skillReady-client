@@ -3,12 +3,14 @@ import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router";
+import useAlert from "../../hooks/useAlert";
 
 const MyAddedCourses = () => {
   const { user } = useContext(AuthContext);
-  const navigate =useNavigate();
+  const navigate = useNavigate();
   const [myCourses, setMyCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const showAlert = useAlert();
 
   useEffect(() => {
     if (user?.email) {
@@ -17,50 +19,48 @@ const MyAddedCourses = () => {
         .then((res) => setMyCourses(res.data))
         .catch((err) => console.log(err));
     }
-  }, [user,myCourses]);
+  }, [user, myCourses]);
 
   const openModal = (course) => {
     setSelectedCourse(course);
     document.getElementById("update_modal").showModal();
   };
 
-  const handleUpdate = async (e)=>{
-e.preventDefault();
+  const handleUpdate = async (e) => {
+    e.preventDefault();
 
-const title = e.target.title.value;
-const category = e.target.category.value;
-const price = e.target.price.value;
-const image = e.target.image.value;
-const description = e.target.description.value;
+    const title = e.target.title.value;
+    const category = e.target.category.value;
+    const price = e.target.price.value;
+    const image = e.target.image.value;
+    const description = e.target.description.value;
 
-try{
-    const updatedCourse ={title,category,price,image,description}
+    try {
+      const updatedCourse = { title, category, price, image, description };
 
-const result = await axios.put(
-  `http://localhost:3000/courses/${selectedCourse._id}`,updatedCourse
-);
-if(result.data.modifiedCount){
-    alert('Course updated successfully!')
-}
+      const result = await axios.put(
+        `http://localhost:3000/courses/${selectedCourse._id}`,
+        updatedCourse
+      );
 
-}
-catch(error){
-    console.log('Error updating course!: ',error)
-}
-  }
-
-  const handleView =(id)=>{
-    navigate(`/allCourses/${id}`);
-
-  }
-
-  const handleDelete =async (id)=>{
-    const result = await axios.delete(`http://localhost:3000/courses/${id}`);
-    if(result.deletedCount){
-      alert('Course deleted successfully!')
+      if (result.data.modifiedCount) {
+        showAlert("success", "Course updated successfully!");
+      }
+    } catch (error) {
+      showAlert(error.message, "Error updating course!");
     }
+  };
 
-  }
+  const handleView = (id) => {
+    navigate(`/allCourses/${id}`);
+  };
+
+ const handleDelete = async (id) => {
+   const result = await axios.delete(`http://localhost:3000/courses/${id}`);
+   if (result.data.deletedCount) {
+     showAlert("success", "Course deleted successfully!");
+   }
+ };
 
   return (
     <div className="max-w-11/12 mx-auto my-10">
@@ -115,7 +115,10 @@ catch(error){
                     ${course.price}
                   </td>
                   <td className="px-6 py-4 flex justify-center items-center gap-2">
-                    <button onClick={()=>handleView(course._id)} className="bg-primary hover:bg-secondary text-white px-3 py-1 rounded-md flex items-center gap-1 transition">
+                    <button
+                      onClick={() => handleView(course._id)}
+                      className="bg-primary hover:bg-secondary text-white px-3 py-1 rounded-md flex items-center gap-1 transition"
+                    >
                       <FaEye /> View
                     </button>
                     <button
@@ -124,9 +127,10 @@ catch(error){
                     >
                       <FaEdit /> Update
                     </button>
-                    <button 
-                    onClick={()=>handleDelete(course._id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md flex items-center gap-1 transition">
+                    <button
+                      onClick={() => handleDelete(course._id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md flex items-center gap-1 transition"
+                    >
                       <FaTrash /> Delete
                     </button>
                   </td>
@@ -137,16 +141,12 @@ catch(error){
         </div>
       )}
 
-    
       <dialog id="update_modal" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg mb-4">Update Course</h3>
 
           {selectedCourse && (
-            <form
-             onSubmit={handleUpdate}
-              className="grid grid-cols-1 gap-3"
-            >
+            <form onSubmit={handleUpdate} className="grid grid-cols-1 gap-3">
               <input
                 type="text"
                 defaultValue={selectedCourse.title}
@@ -176,7 +176,7 @@ catch(error){
                 className="input input-bordered w-full"
               />
               <textarea
-              name="description"
+                name="description"
                 defaultValue={selectedCourse.description}
                 placeholder="Description"
                 className="textarea textarea-bordered w-full"

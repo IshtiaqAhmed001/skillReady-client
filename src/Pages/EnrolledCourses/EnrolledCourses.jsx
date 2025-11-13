@@ -1,23 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { FaBook, FaTrashAlt } from "react-icons/fa";
+import { AuthContext } from "../../contexts/AuthContext";
+import useAlert from "../../hooks/useAlert";
 
 const EnrolledCourses = () => {
   const [enrolled, setEnrolled] = useState([]);
+  const { user } = useContext(AuthContext);
 
-  // Fetch enrolled courses
+  const showAlert = useAlert(); 
+
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/enroll")
-      .then((res) => setEnrolled(res.data))
-      .catch((err) => console.error("Error fetching enrolled courses:", err));
-  }, []);
+    if (user?.email) {
+      axios
+        .get(`http://localhost:3000/enroll?email=${user.email}`)
+        .then((res) => setEnrolled(res.data))
+        .catch((err) => console.error("Error fetching enrolled courses:", err));
+    }
+  }, [user]);
 
-  // Unenroll handler
-  const handleUnenroll = (id) => {
-  
+  const handleUnenroll = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/enroll/${id}`);
+
+      setEnrolled((prev) => prev.filter((course) => course._id !== id));
+
+      showAlert("success", "Successfully unenrolled from course!");
+    } catch (err) {
+      console.error("Could not unenroll from course:", err);
+      showAlert("error", "Something went wrong, could not unenroll!");
+    }
   };
-
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-2">
@@ -43,7 +56,7 @@ const EnrolledCourses = () => {
               </div>
               <button
                 onClick={() => handleUnenroll(course._id)}
-                className="flex items-center gap-2 bg-red-100 hover:bg-red-200 text-red-600 px-4 py-2 rounded-lg font-medium transition"
+                className="flex items-center gap-2 bg-red-100 hover:bg-red-200 text-red-600 px-4 py-2 rounded-lg font-medium transition cursor-pointer"
               >
                 <FaTrashAlt /> Unenroll
               </button>

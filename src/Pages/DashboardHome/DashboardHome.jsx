@@ -2,26 +2,29 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
 import { FaBook, FaUserGraduate, FaPlusCircle } from "react-icons/fa";
+import useAlert from "../../hooks/useAlert";
 
 const DashboardHome = () => {
   const { user } = useContext(AuthContext);
   const [addedCoursesCount, setAddedCoursesCount] = useState(0);
   const [enrolledCoursesCount, setEnrolledCoursesCount] = useState(0);
+  const showAlert = useAlert();
 
   useEffect(() => {
-    // Get number of added courses
     if (user?.email) {
       axios
         .get(`http://localhost:3000/courses?createdBy=${user.email}`)
         .then((res) => setAddedCoursesCount(res.data.length))
-        .catch((err) => console.log(err));
+        .catch((err) => showAlert("error", "Failed to fetch added courses!"));
 
       axios
-        .get(`http://localhost:3000/enrolled-courses?userEmail=${user.email}`)
+        .get(`http://localhost:3000/enroll?email=${user.email}`)
         .then((res) => setEnrolledCoursesCount(res.data.length))
-        .catch((err) => console.log(err));
+        .catch((err) =>
+          showAlert("error", "Failed to fetch enrolled courses!")
+        );
     }
-  }, [user]);
+  }, [user, showAlert]);
 
   return (
     <div className="flex flex-col gap-8">
@@ -56,8 +59,6 @@ const DashboardHome = () => {
             </div>
           </div>
         </div>
-
-      
       </div>
 
       <div className="mt-10 text-gray-600">

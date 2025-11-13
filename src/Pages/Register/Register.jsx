@@ -2,20 +2,19 @@ import { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
+import useAlert from "../../hooks/useAlert";
 
 const Register = () => {
   const {
     registerUser,
     signInWithGoogle,
-    user,
     setUser,
-    loading,
-    setLoading,
     updateUser,
   } = use(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
+  const showAlert = useAlert(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,12 +29,12 @@ const Register = () => {
         const user = result.user;
         updateUser({ ...user, displayName: name, photoURL: photo }).then(() => {
           setUser({ ...user, displayName: name, photoURL: photo });
-          console.log("Registration successful");
+          showAlert("success", "Registration successful");
         });
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
-        console.log(error);
+        showAlert("error", `Registration failed: ${error.message}`);
       });
   };
 
@@ -46,7 +45,7 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+      showAlert("error", `Registration failed: ${error.message}`);
       });
   };
 

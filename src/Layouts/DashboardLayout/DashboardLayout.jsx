@@ -8,19 +8,23 @@ import {
   FaHome,
 } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthContext";
+import useAlert from "../../hooks/useAlert";
+
 
 const DashboardLayout = () => {
   const { logoutUser } = use(AuthContext);
+  const showAlert = useAlert(); 
 
   const handleLogout = () => {
     logoutUser()
       .then(() => {
-        console.log("User logged out successfully!");
+        showAlert("success", "You have logged out successfully!");
       })
       .catch((error) => {
-        console.log(error);
+        showAlert("error", "Logout failed. Please try again!");
       });
   };
+
   return (
     <div className="grid grid-cols-12 min-h-screen bg-gray-50">
       {/* Sidebar */}

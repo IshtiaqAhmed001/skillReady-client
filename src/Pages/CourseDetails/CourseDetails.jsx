@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import {
@@ -8,11 +8,14 @@ import {
   FaDollarSign,
   FaStar,
 } from "react-icons/fa";
-import Swal from "sweetalert2";
+import { AuthContext } from "../../contexts/AuthContext";
+import useAlert from "../../hooks/useAlert";
 
 const CourseDetails = () => {
+  const { user } = use(AuthContext);
   const { id } = useParams();
   const [course, setCourse] = useState(null);
+  const showAlert = useAlert();
 
   useEffect(() => {
     axios
@@ -37,18 +40,18 @@ const CourseDetails = () => {
   const { title, image, price, duration, category, description, instructor } =
     course;
 
-  const handleEnrollNow = async (id) => {
-    const result = await axios.post(`http://localhost:3000/enroll`, { id });
-    console.log("coursed enrolled", result.data);
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Successfully enrolled into course!",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+  const handleEnrollNow = async (id, email) => {
+    try {
+      const result = await axios.post("http://localhost:3000/enroll", {
+        id,
+        email,
+      });
+      showAlert("success", "Successfully enrolled into course!");
+    } catch (error) {
+      console.error("Error enrolling into course:", error);
+      showAlert("error", "Already enrolled!");
+    }
   };
-
   return (
     <div className="max-w-11/12 mx-auto px-6 py-12">
       {/* Banner Section */}
@@ -101,7 +104,7 @@ const CourseDetails = () => {
 
           <button
             onClick={() => {
-              handleEnrollNow(id);
+              handleEnrollNow(id, user?.email);
             }}
             className="w-full bg-blue-900 hover:bg-secondary cursor-pointer text-white py-3 rounded-xl font-medium transition-all"
           >

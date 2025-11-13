@@ -2,10 +2,12 @@ import React, { use, useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
+import useAlert from "../../hooks/useAlert";
 
 const AddCourse = () => {
   const { user } = use(AuthContext);
   const [newCourse, setNewCourse] = useState(null);
+  const showAlert = useAlert();
 
   const handleAddCourse = (e) => {
     e.preventDefault();
@@ -42,15 +44,13 @@ const AddCourse = () => {
       axios
         .post("http://localhost:3000/courses", newCourse)
         .then((result) => {
-          console.log(result.data);
-          console.log("New Course added successfully!");
+          showAlert("success", "New Course added successfully!");
         })
         .catch((error) => {
-          console.log(error);
+          showAlert("error", "Failed to add new course!");
         });
     }
-  }, [newCourse]);
-
+  }, [newCourse, showAlert]);
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-2">

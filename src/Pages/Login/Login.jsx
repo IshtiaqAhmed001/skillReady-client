@@ -2,11 +2,13 @@ import { use } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
+import useAlert from "../../hooks/useAlert";
 
 const Login = () => {
   const { setUser, loginUser, signInWithGoogle } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const showAlert = useAlert(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,13 +19,12 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         setUser(result.user);
-        console.log("user logged in successfully!");
+        showAlert("success", "User logged in successfully!");
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        showAlert("error", `Login failed: ${errorMessage}`);
       });
   };
 
@@ -34,7 +35,7 @@ const Login = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+       showAlert("error", `Login failed: ${error.message}`);
       });
   };
 

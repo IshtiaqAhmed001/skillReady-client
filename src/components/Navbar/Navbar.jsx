@@ -3,10 +3,11 @@ import { Link, NavLink } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FaUserCircle } from "react-icons/fa";
+import useAlert from "../../hooks/useAlert";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
-
+  const showAlert = useAlert(); // ✅ top-level hook
   const links = (
     <>
       <li>
@@ -56,11 +57,15 @@ const Navbar = () => {
     </>
   );
 
-  const handleLogout = () => {
-    logoutUser()
-      .then(() => console.log("User logged out successfully!"))
-      .catch((error) => console.log(error));
-  };
+const handleLogout = () => {
+  logoutUser()
+    .then(() => {
+      showAlert("success", "You have logged out successfully!");
+    })
+    .catch((error) => {
+      showAlert("error", "Logout failed. Please try again!");
+    });
+};
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -87,7 +92,11 @@ const Navbar = () => {
               <div className="flex items-center gap-2 relative">
                 {user ? (
                   <div>
-                    <img src={user.photoURL} className="w-8 h-8 rounded-full" alt="" />
+                    <img
+                      src={user.photoURL}
+                      className="w-8 h-8 rounded-full"
+                      alt=""
+                    />
                   </div>
                 ) : (
                   <FaUserCircle className="text-primary w-8 h-8" />
