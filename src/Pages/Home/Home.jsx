@@ -1,6 +1,7 @@
 import React from "react";
-import HeroSection from "../../components/HeroSection/HeroSection";
 import { Link, useLoaderData } from "react-router";
+import { motion } from "framer-motion";
+import HeroSection from "../../components/HeroSection/HeroSection";
 import PopularCourses from "../../components/PopularCourses/PopularCourses";
 import WhyChooseUs from "../../components/WhyChooseUs/WhyChooseUs";
 import TopInstructors from "../../components/TopInstructors/TopInstructors";
@@ -9,10 +10,23 @@ const Home = () => {
   const courses = useLoaderData();
   const popularCourses = courses.slice(1, 7);
 
+  // Simple fade-up animation
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
   return (
     <div>
-      <HeroSection></HeroSection>
-      <section className="max-w-11/12 mx-auto px-5 md:px-10 mt-16 text-center">
+      <HeroSection />
+
+      <motion.section
+        className="max-w-11/12 mx-auto px-5 md:px-10 mt-16 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
         <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
           Upgrade Your Skills, Transform Your Career
         </h2>
@@ -28,19 +42,38 @@ const Home = () => {
             Browse All Courses
           </Link>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="mt-20">
+      <motion.section
+        className="mt-20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">
-          Popular Online Courses
+          <span className="text-primary">Popular</span> Online Courses
         </h2>
-      <PopularCourses courses={popularCourses}></PopularCourses>
-      
-      </section>
+        <PopularCourses courses={popularCourses} />
+      </motion.section>
 
-      <WhyChooseUs></WhyChooseUs>
-      <TopInstructors></TopInstructors>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
+        <WhyChooseUs />
+      </motion.div>
 
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
+        <TopInstructors />
+      </motion.div>
     </div>
   );
 };

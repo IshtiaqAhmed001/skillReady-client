@@ -33,7 +33,7 @@ const TopInstructors = () => {
     <section className="bg-white py-20 mt-20">
       <div className="max-w-11/12 mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-          Meet Our <span className="text-indigo-700">Top Instructors</span>
+          Meet Our <span className="text-primary">Top Instructors</span>
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto mb-14">
           Learn from the best — our expert instructors are passionate educators

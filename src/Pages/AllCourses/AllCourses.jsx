@@ -15,7 +15,7 @@ const AllCourses = () => {
         setFiltered(res.data);
       })
       .catch((err) => console.log(err));
-  }, [courses]);
+  }, []); // removed courses dependency to prevent duplication
 
   const handleSearch = (e) => {
     const value = e.target.value.toLowerCase();
@@ -29,8 +29,9 @@ const AllCourses = () => {
     <div className="max-w-11/12 mx-auto py-10">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800">
-          Skills to Transform Your Career and Life
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-800 text-center mb-12">
+          Skills to Transform{" "}
+          <span className="text-primary">Your Career and Life</span>
         </h1>
         <p className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
           From creative skills to technical expertise, SkillReady helps you
@@ -45,10 +46,10 @@ const AllCourses = () => {
           placeholder="Search courses..."
           value={search}
           onChange={handleSearch}
-          className="input input-bordered w-full md:w-1/2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+          className="input input-bordered w-full md:w-1/2 shadow-sm focus:border-blue-900 focus:ring-2 focus:ring-blue-200"
         />
 
-        <select className="select select-bordered w-full md:w-1/4">
+        <select className="select select-bordered w-full md:w-1/4 border-blue-900 text-blue-900">
           <option disabled selected>
             Filter by Category
           </option>
