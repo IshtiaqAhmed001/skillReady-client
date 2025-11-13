@@ -8,6 +8,7 @@ import {
   FaDollarSign,
   FaStar,
 } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const CourseDetails = () => {
   const { id } = useParams();
@@ -39,6 +40,13 @@ const CourseDetails = () => {
   const handleEnrollNow = async (id) => {
     const result = await axios.post(`http://localhost:3000/enroll`, { id });
     console.log("coursed enrolled", result.data);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Successfully enrolled into course!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
@@ -95,13 +103,12 @@ const CourseDetails = () => {
             onClick={() => {
               handleEnrollNow(id);
             }}
-            className="w-full bg-blue-900 hover:bg-blue-800 cursor-pointer text-white py-3 rounded-xl font-medium transition-all"
+            className="w-full bg-blue-900 hover:bg-secondary cursor-pointer text-white py-3 rounded-xl font-medium transition-all"
           >
             Enroll Now
           </button>
         </div>
       </div>
-
     </div>
   );
 };

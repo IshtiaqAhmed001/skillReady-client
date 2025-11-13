@@ -54,6 +54,14 @@ catch(error){
 
   }
 
+  const handleDelete =async (id)=>{
+    const result = await axios.delete(`http://localhost:3000/courses/${id}`);
+    if(result.deletedCount){
+      alert('Course deleted successfully!')
+    }
+
+  }
+
   return (
     <div className="max-w-11/12 mx-auto my-10">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">
@@ -107,16 +115,18 @@ catch(error){
                     ${course.price}
                   </td>
                   <td className="px-6 py-4 flex justify-center items-center gap-2">
-                    <button onClick={()=>handleView(course._id)} className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-md flex items-center gap-1 transition">
+                    <button onClick={()=>handleView(course._id)} className="bg-primary hover:bg-secondary text-white px-3 py-1 rounded-md flex items-center gap-1 transition">
                       <FaEye /> View
                     </button>
                     <button
-                      className="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-md flex items-center gap-1 transition"
+                      className="bg-green-700 hover:bg-green-600 text-white px-3 py-1 rounded-md flex items-center gap-1 transition"
                       onClick={() => openModal(course)}
                     >
                       <FaEdit /> Update
                     </button>
-                    <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md flex items-center gap-1 transition">
+                    <button 
+                    onClick={()=>handleDelete(course._id)}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md flex items-center gap-1 transition">
                       <FaTrash /> Delete
                     </button>
                   </td>

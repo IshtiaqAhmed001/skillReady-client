@@ -4,12 +4,11 @@ import { FaStar } from "react-icons/fa";
 import { Navigate, useNavigate } from "react-router";
 
 const SingleCourse = ({ course }) => {
-const { _id, title, instructor, category, image, price, rating } = course;
-  const navigate =useNavigate();
+  const { _id, title, instructor, category, image, price, rating } = course;
+  const navigate = useNavigate();
 
   const handleViewDetails = (id) => {
-
-   navigate(`/allCourses/${id}`);
+    navigate(`/allCourses/${id}`);
   };
 
   return (
@@ -54,8 +53,8 @@ const { _id, title, instructor, category, image, price, rating } = course;
 
         {/* Action Button */}
         <button
-          onClick={()=>handleViewDetails(_id)}
-          className="mt-4 w-full btn btn-primary hover:bg-blue-800 text-white py-2 rounded-lg text-sm font-medium transition-all"
+          onClick={() => handleViewDetails(_id)}
+          className="mt-4 w-full btn btn-primary hover:bg-secondary text-white py-2 rounded-lg text-sm font-medium transition-all"
         >
           View Details
         </button>

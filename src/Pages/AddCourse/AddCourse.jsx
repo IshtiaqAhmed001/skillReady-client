@@ -191,7 +191,7 @@ const AddCourse = () => {
           <div className="md:col-span-2 text-center mt-4">
             <button
               type="submit"
-              className="bg-blue-900 cursor-pointer hover:bg-blue-800 text-white px-8 py-3 rounded-xl font-medium transition-all"
+              className="bg-blue-900 cursor-pointer hover:bg-secondary text-white px-8 py-3 rounded-xl font-medium transition-all"
             >
               Add Course
             </button>
