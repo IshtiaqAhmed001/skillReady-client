@@ -1,8 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
-import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { FaUserCircle } from "react-icons/fa";
 import useAlert from "../../hooks/useAlert";
 
 const Navbar = () => {
@@ -60,19 +58,23 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logoutUser()
-      .then(() => {
-        showAlert("success", "You have logged out successfully!");
-      })
-      .catch((error) => {
-        showAlert(error.code, "Logout failed. Please try again!");
-      });
+      .then(() => showAlert("success", "You have logged out successfully!"))
+      .catch((error) =>
+        showAlert(error.code, "Logout failed. Please try again!")
+      );
+  };
+
+  const handleThemeToggle = () => {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute("data-theme");
+    html.setAttribute("data-theme", currentTheme === "dark" ? "light" : "dark");
   };
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-11/12 mx-auto px-2 sm:px-4">
         <div className="flex justify-between h-16 items-center">
-         
+          {/* Logo */}
           <div className="shrink-0">
             <Link
               to="/"
@@ -87,30 +89,33 @@ const Navbar = () => {
             <ul className="flex list-none gap-2">{links}</ul>
           </div>
 
-         
-          <div className="flex items-center gap-4">
+          {/* Right Side */}
+          <div className="flex items-center gap-2">
+            {/* Theme Toggle Button always visible */}
+            <button
+              onClick={handleThemeToggle}
+              className="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded-md text-sm transition"
+            >
+              🌓
+            </button>
+
             {user ? (
-              <div className="flex items-center gap-2 relative">
-              
+              <>
                 {user.photoURL && (
-                  <div className="hidden sm:block">
-                    <img
-                      src={user.photoURL}
-                      className="w-8 h-8 rounded-full"
-                      alt=""
-                    />
-                  </div>
+                  <img
+                    src={user.photoURL}
+                    className="w-8 h-8 rounded-full hidden sm:block"
+                    alt=""
+                  />
                 )}
-                <span className="text-gray-800 font-medium text-sm sm:text-base">
-                  {user?.displayName}
-                </span>
+                {/* Logout only for md and above */}
                 <button
                   onClick={handleLogout}
-                  className="ml-2 bg-red-100 hover:bg-red-200 text-red-600 px-3 py-1 rounded-md text-sm transition"
+                  className="ml-2 bg-red-100 hover:bg-red-200 text-red-600 px-3 py-1 rounded-md text-sm transition hidden md:block"
                 >
                   Logout
                 </button>
-              </div>
+              </>
             ) : (
               <Link
                 to="/auth/login"
@@ -121,7 +126,7 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
           <div className="lg:hidden">
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost text-gray-800">
@@ -149,7 +154,7 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={handleLogout}
-                      className="w-full text-left text-red-500 hover:bg-red-50 rounded-md px-2 py-1 transition"
+                      className="w-full text-left text-red-500 hover:bg-red-50 rounded-md px-2 py-1 transition md:hidden"
                     >
                       Logout
                     </button>
