@@ -1,16 +1,27 @@
-# React + Vite
+# SkillReady
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SkillReady is an online learning platform designed to help learners upgrade their skills and transform their careers. It offers a wide range of courses taught by expert instructors, with a focus on smooth user experience and practical knowledge.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Wide Range of Courses:** Explore courses in Web Development, Design, Data Science, Marketing, and more.
+- **Top Instructors:** Learn from experienced professionals and industry experts.
+- **Search and Filter:** Easily find courses with search and category filter functionality.
+- **Responsive Design:** Enjoy a seamless experience on both desktop and mobile devices.
+- **Interactive UI:** Engaging design with animations and modern UI components powered by React and DaisyUI.
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React.js
+- Tailwind CSS & DaisyUI
+- Framer Motion for animations
+- Axios for API calls
+- React Router for navigation
+- SweetAlert2 for notifications
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Pages:** Home, AllCourses, CourseDetails, Dashboard, Login, Register
+- **Components:** HeroSection, PopularCourses, WhyChooseUs, TopInstructors, SingleCourse
+- **Contexts:** AuthProvider for authentication
+- **Layouts:** RootLayout, DashboardLayout

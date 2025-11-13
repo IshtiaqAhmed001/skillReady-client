@@ -72,8 +72,8 @@ const Navbar = () => {
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-11/12 mx-auto px-2 sm:px-4">
         <div className="flex justify-between h-16 items-center">
-          {/* Logo */}
-          <div className="flex-shrink-0">
+         
+          <div className="shrink-0">
             <Link
               to="/"
               className="text-primary text-2xl font-bold tracking-wider hover:text-blue-900 transition"
@@ -87,11 +87,11 @@ const Navbar = () => {
             <ul className="flex list-none gap-2">{links}</ul>
           </div>
 
-          {/* Right Side */}
+         
           <div className="flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-2 relative">
-                {/* Hide photo on small devices */}
+              
                 {user.photoURL && (
                   <div className="hidden sm:block">
                     <img

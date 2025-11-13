@@ -15,28 +15,47 @@ const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const showAlert = useAlert(); 
+  const [passwordError, setPasswordError] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const photo = e.target.photo.value;
-    const password = e.target.password.value;
+ const handleSubmit = (e) => {
+   e.preventDefault();
 
-    registerUser(email, password)
-      .then((result) => {
-        const user = result.user;
-        updateUser({ ...user, displayName: name, photoURL: photo }).then(() => {
-          setUser({ ...user, displayName: name, photoURL: photo });
-          showAlert("success", "Registration successful");
-        });
-        navigate(`${location.state ? location.state : "/"}`);
-      })
-      .catch((error) => {
-        showAlert("error", `Registration failed: ${error.code}`);
-      });
-  };
+   const name = e.target.name.value;
+   const email = e.target.email.value;
+   const photo = e.target.photo.value;
+   const password = e.target.password.value;
+
+   // Password validation
+   if (!/[A-Z]/.test(password)) {
+     setPasswordError("Password must contain at least one uppercase letter.");
+     return;
+   }
+   if (!/[a-z]/.test(password)) {
+     setPasswordError("Password must contain at least one lowercase letter.");
+     return;
+   }
+   if (password.length < 6) {
+     setPasswordError("Password must be at least 6 characters long.");
+     return;
+   }
+
+   // Clear previous error
+   setPasswordError("");
+
+   registerUser(email, password)
+     .then((result) => {
+       const user = result.user;
+       updateUser({ ...user, displayName: name, photoURL: photo }).then(() => {
+         setUser({ ...user, displayName: name, photoURL: photo });
+         showAlert("success", "Registration successful");
+       });
+       navigate(`${location.state ? location.state : "/"}`);
+     })
+     .catch((error) => {
+       showAlert("error", `Registration failed: ${error.code}`);
+     });
+ };
 
   const handleGoogleRegister = () => {
     signInWithGoogle()
@@ -106,11 +125,14 @@ const Register = () => {
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
+            {passwordError && (
+              <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+            )}
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-900 text-white py-2 rounded-lg font-medium transition-all"
+            className="w-full bg-primary hover:bg-secondary text-white py-2 rounded-lg font-medium transition-all"
           >
             Register
           </button>
