@@ -2,6 +2,7 @@ import React from "react";
 import HeroSection from "../../components/HeroSection/HeroSection";
 import { Link, useLoaderData } from "react-router";
 import PopularCourses from "../../components/PopularCourses/PopularCourses";
+import WhyChooseUs from "../../components/WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
   const courses = useLoaderData();
@@ -35,6 +36,8 @@ const Home = () => {
       <PopularCourses courses={popularCourses}></PopularCourses>
       
       </section>
+
+      <WhyChooseUs></WhyChooseUs>
 
     </div>
   );
