@@ -21,23 +21,23 @@ const Home = () => {
       <HeroSection />
 
       <motion.section
-        className="max-w-11/12 mx-auto px-5 md:px-10 mt-16 text-center"
+        className="max-w-11/12 mx-auto px-4 sm:px-6 md:px-10 mt-12 md:mt-16 text-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeUp}
       >
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
+        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-800">
           Upgrade Your Skills, Transform Your Career
         </h2>
-        <p className="text-gray-600 mt-4 text-base md:text-lg">
+        <p className="text-gray-600 mt-3 sm:mt-4 text-sm sm:text-base md:text-lg">
           Explore a wide range of courses and learn at your own pace. From
           technical skills to soft skills, we’ve got you covered.
         </p>
-        <div className="mt-6">
+        <div className="mt-4 sm:mt-6">
           <Link
             to="/allCourses"
-            className="btn btn-primary btn-lg px-6 py-3 transition-all hover:scale-105"
+            className="btn btn-primary btn-lg px-4 sm:px-6 md:px-6 py-2 sm:py-3 transition-all hover:scale-105"
           >
             Browse All Courses
           </Link>
@@ -45,19 +45,20 @@ const Home = () => {
       </motion.section>
 
       <motion.section
-        className="mt-20"
+        className="mt-12 sm:mt-16 md:mt-20"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeUp}
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 text-center mb-8 sm:mb-10 md:mb-12">
           <span className="text-primary">Popular</span> Online Courses
         </h2>
         <PopularCourses courses={popularCourses} />
       </motion.section>
 
       <motion.div
+        className="mt-12 sm:mt-16 md:mt-20"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -67,6 +68,7 @@ const Home = () => {
       </motion.div>
 
       <motion.div
+        className="mt-12 sm:mt-16 md:mt-20 mb-12 md:mb-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}

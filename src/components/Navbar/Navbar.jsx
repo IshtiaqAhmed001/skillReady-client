@@ -7,7 +7,8 @@ import useAlert from "../../hooks/useAlert";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
-  const showAlert = useAlert(); // ✅ top-level hook
+  const showAlert = useAlert();
+
   const links = (
     <>
       <li>
@@ -57,19 +58,19 @@ const Navbar = () => {
     </>
   );
 
-const handleLogout = () => {
-  logoutUser()
-    .then(() => {
-      showAlert("success", "You have logged out successfully!");
-    })
-    .catch((error) => {
-      showAlert(error.code, "Logout failed. Please try again!");
-    });
-};
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => {
+        showAlert("success", "You have logged out successfully!");
+      })
+      .catch((error) => {
+        showAlert(error.code, "Logout failed. Please try again!");
+      });
+  };
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-11/12 mx-auto">
+      <div className="max-w-11/12 mx-auto px-2 sm:px-4">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -90,18 +91,17 @@ const handleLogout = () => {
           <div className="flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-2 relative">
-                {user ? (
-                  <div>
+                {/* Hide photo on small devices */}
+                {user.photoURL && (
+                  <div className="hidden sm:block">
                     <img
                       src={user.photoURL}
                       className="w-8 h-8 rounded-full"
                       alt=""
                     />
                   </div>
-                ) : (
-                  <FaUserCircle className="text-primary w-8 h-8" />
                 )}
-                <span className="text-gray-800 font-medium">
+                <span className="text-gray-800 font-medium text-sm sm:text-base">
                   {user?.displayName}
                 </span>
                 <button
@@ -114,7 +114,7 @@ const handleLogout = () => {
             ) : (
               <Link
                 to="/auth/login"
-                className="bg-primary text-white hover:bg-indigo-800 px-4 py-2 rounded-lg font-medium transition"
+                className="bg-primary text-white hover:bg-indigo-800 px-4 py-2 rounded-lg font-medium transition text-sm sm:text-base"
               >
                 Login
               </Link>

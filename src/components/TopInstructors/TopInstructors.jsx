@@ -2,7 +2,6 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 
 const TopInstructors = () => {
-
   const instructors1 = [
     {
       name: "Sophia Turner",
@@ -23,7 +22,6 @@ const TopInstructors = () => {
       rating: 4.9,
     },
   ];
-
 
   const instructors2 = [
     {
@@ -46,24 +44,25 @@ const TopInstructors = () => {
     },
   ];
 
-
   const renderCards = (array) =>
     array.map((inst, i) => (
       <div
         key={i}
-        className="max-w-xs bg-white rounded-2xl shadow-md border border-blue-100 hover:shadow-lg transition-all overflow-hidden"
+        className="w-full sm:w-64 md:w-72 max-w-xs bg-white rounded-2xl shadow-md border border-blue-100 hover:shadow-lg transition-all overflow-hidden"
       >
         <img
           src={inst.image}
           alt={inst.name}
-          className="w-full h-56 object-cover"
+          className="w-full h-48 sm:h-56 object-cover"
         />
-        <div className="p-5 text-center">
-          <h3 className="text-lg font-semibold text-gray-800 mb-1">
+        <div className="p-4 sm:p-5 text-center">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-1">
             {inst.name}
           </h3>
-          <p className="text-sm text-gray-500 mb-3">{inst.role}</p>
-          <div className="flex justify-center items-center gap-1 text-yellow-500 text-sm">
+          <p className="text-sm sm:text-base text-gray-500 mb-2 sm:mb-3">
+            {inst.role}
+          </p>
+          <div className="flex justify-center items-center gap-1 text-yellow-500 text-sm sm:text-base">
             <FaStar />
             <span className="text-gray-700 font-medium">{inst.rating}</span>
           </div>
@@ -72,25 +71,24 @@ const TopInstructors = () => {
     ));
 
   return (
-    <section className="bg-blue-50 py-20 mt-20">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+    <section className="bg-blue-50 py-12 sm:py-16 md:py-20 mt-12 sm:mt-16 md:mt-20">
+      <div className="max-w-11/12 mx-auto text-center">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 md:mb-8">
           Meet Our <span className="text-blue-900">Top Instructors</span>
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-14">
+        <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg mb-8 sm:mb-10 md:mb-14">
           Learn from the best — our expert instructors are passionate educators
           with years of professional experience in their fields.
         </p>
 
-  
         <div className="carousel w-full">
           {/* Slide 1 */}
           <div
             id="slide1"
-            className="carousel-item relative w-full flex justify-center gap-6"
+            className="carousel-item relative w-full flex justify-center gap-4 sm:gap-6"
           >
             {renderCards(instructors1)}
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <div className="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2 sm:left-5 sm:right-5">
               <a
                 href="#slide2"
                 className="btn btn-circle bg-blue-900 text-white hover:bg-blue-800"
@@ -109,10 +107,10 @@ const TopInstructors = () => {
           {/* Slide 2 */}
           <div
             id="slide2"
-            className="carousel-item relative w-full flex justify-center gap-6"
+            className="carousel-item relative w-full flex justify-center gap-4 sm:gap-6"
           >
             {renderCards(instructors2)}
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <div className="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2 sm:left-5 sm:right-5">
               <a
                 href="#slide1"
                 className="btn btn-circle bg-blue-900 text-white hover:bg-blue-800"

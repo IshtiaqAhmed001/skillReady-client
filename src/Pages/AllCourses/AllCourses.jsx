@@ -8,7 +8,6 @@ const AllCourses = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [filtered, setFiltered] = useState([]);
 
-  // Fetch courses once
   useEffect(() => {
     axios
       .get("http://localhost:3000/courses")
@@ -19,7 +18,6 @@ const AllCourses = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // Unified filter handler for search + category
   const handleFilter = (searchValue, categoryValue) => {
     const filteredCourses = courses.filter((course) => {
       const matchesSearch = course.title
@@ -34,21 +32,20 @@ const AllCourses = () => {
   };
 
   return (
-    <div className="max-w-11/12 mx-auto py-10">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-5xl font-bold text-gray-800">
+    <div className="max-w-11/12 mx-auto py-8 sm:py-10 md:py-12">
+    
+      <div className="text-center mb-8 sm:mb-10 md:mb-12">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-800">
           Skills to Transform{" "}
           <span className="text-blue-900">Your Career and Life</span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
+        <p className="text-sm sm:text-base md:text-lg text-gray-600 mt-2 sm:mt-3 md:mt-4 max-w-2xl mx-auto">
           From creative skills to technical expertise, SkillReady helps you
           learn from the best — anytime, anywhere.
         </p>
       </div>
 
-      {/* Search + Category Filter */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
         <input
           type="text"
           placeholder="Search courses..."
@@ -58,7 +55,7 @@ const AllCourses = () => {
             setSearch(value);
             handleFilter(value, selectedCategory);
           }}
-          className="input input-bordered w-full md:w-1/2 shadow-sm focus:border-blue-900 focus:ring-2 focus:ring-blue-200"
+          className="input input-bordered w-full sm:w-3/5 md:w-1/2 shadow-sm focus:border-blue-900 focus:ring-2 focus:ring-blue-200"
         />
 
         <select
@@ -68,7 +65,7 @@ const AllCourses = () => {
             setSelectedCategory(category);
             handleFilter(search, category);
           }}
-          className="select select-bordered w-full md:w-1/4 border-blue-900 text-blue-900"
+          className="select select-bordered w-full sm:w-2/5 md:w-1/4 border-blue-900 text-blue-900"
         >
           <option value="">Filter by Category</option>
           <option value="Web Development">Web Development</option>
@@ -78,16 +75,15 @@ const AllCourses = () => {
         </select>
       </div>
 
-      {/* Courses Grid */}
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {filtered.map((course) => (
             <SingleCourse key={course._id} course={course} />
           ))}
         </div>
       ) : (
-        <div className="text-center mt-20">
-          <p className="text-gray-500 text-lg animate-pulse">
+        <div className="text-center mt-12 sm:mt-16 md:mt-20">
+          <p className="text-gray-500 text-base sm:text-lg md:text-xl animate-pulse">
             No courses found. Try searching for something else.
           </p>
         </div>
