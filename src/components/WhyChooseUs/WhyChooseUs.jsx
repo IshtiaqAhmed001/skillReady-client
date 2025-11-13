@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
 
   return (
     <section className="bg-gradient-to-b from-indigo-50 to-white py-20 mt-20">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 text-center">
+      <div className="max-w-11/12 mx-auto  text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
           Why Choose <span className="text-indigo-700">SkillReady</span>?
         </h2>

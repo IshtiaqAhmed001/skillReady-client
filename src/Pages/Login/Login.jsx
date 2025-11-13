@@ -76,7 +76,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-900 text-white py-2 rounded-lg font-medium transition-all"
+            className="w-full bg-primary hover:bg-secondary text-white py-2 rounded-lg font-medium transition-all cursor-pointer"
           >
             Login
           </button>
@@ -84,15 +84,15 @@ const Login = () => {
 
         {/* OR divider */}
         <div className="flex items-center my-4">
-          <hr className="flex-grow border-gray-300" />
+          <hr className="grow border-gray-300" />
           <span className="mx-2 text-gray-400">OR</span>
-          <hr className="flex-grow border-gray-300" />
+          <hr className="grow border-gray-300" />
         </div>
 
         {/* Google Login */}
         <button
           onClick={handleGoogleLogin}
-          className="w-full flex items-center justify-center border py-2 rounded-lg hover:bg-gray-100 transition-all"
+          className="w-full flex items-center justify-center border py-2 rounded-lg hover:bg-gray-100 transition-all cursor-pointer"
         >
           <FcGoogle size={20} className="mr-2" /> Login with Google
         </button>

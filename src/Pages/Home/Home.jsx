@@ -3,6 +3,7 @@ import HeroSection from "../../components/HeroSection/HeroSection";
 import { Link, useLoaderData } from "react-router";
 import PopularCourses from "../../components/PopularCourses/PopularCourses";
 import WhyChooseUs from "../../components/WhyChooseUs/WhyChooseUs";
+import TopInstructors from "../../components/TopInstructors/TopInstructors";
 
 const Home = () => {
   const courses = useLoaderData();
@@ -11,7 +12,7 @@ const Home = () => {
   return (
     <div>
       <HeroSection></HeroSection>
-      <section className="max-w-screen-xl mx-auto px-5 md:px-10 mt-16 text-center">
+      <section className="max-w-11/12 mx-auto px-5 md:px-10 mt-16 text-center">
         <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
           Upgrade Your Skills, Transform Your Career
         </h2>
@@ -29,7 +30,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="max-w-11/12 mx-auto px-5 md:px-10 mt-20">
+      <section className="mt-20">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">
           Popular Online Courses
         </h2>
@@ -38,6 +39,7 @@ const Home = () => {
       </section>
 
       <WhyChooseUs></WhyChooseUs>
+      <TopInstructors></TopInstructors>
 
     </div>
   );

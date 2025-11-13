@@ -26,7 +26,7 @@ const AllCourses = () => {
   };
 
   return (
-    <div className="max-w-11/12 mx-auto px-4 md:px-8 py-10">
+    <div className="max-w-11/12 mx-auto py-10">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800">

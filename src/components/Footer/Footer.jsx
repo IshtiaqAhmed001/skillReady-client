@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-gray-300 mt-20">
       <div className="max-w-11/12 mx-auto py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {/* About / Brand */}
+       
           <div>
             <h2 className="text-xl font-bold text-white mb-4">SkillReady</h2>
             <p className="text-gray-400">
