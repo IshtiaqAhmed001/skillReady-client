@@ -47,7 +47,7 @@ const AddCourse = () => {
           showAlert("success", "New Course added successfully!");
         })
         .catch((error) => {
-          showAlert("error", "Failed to add new course!");
+          showAlert(error.code, "Failed to add new course!");
         });
     }
   }, [newCourse, showAlert]);

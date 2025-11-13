@@ -34,7 +34,7 @@ const Register = () => {
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
-        showAlert("error", `Registration failed: ${error.message}`);
+        showAlert("error", `Registration failed: ${error.code}`);
       });
   };
 
@@ -45,7 +45,7 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
-      showAlert("error", `Registration failed: ${error.message}`);
+      showAlert("error", `Registration failed: ${error.code}`);
       });
   };
 

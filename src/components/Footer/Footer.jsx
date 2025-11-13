@@ -5,9 +5,9 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="bg-linear-to-r from-primary via-indigo-900 to-secondary text-gray-300 mt-20">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-11/12 mx-auto  py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-          {/* About / Brand */}
+         
           <div>
             <h2 className="text-2xl font-bold text-white mb-4 tracking-wide">
               SkillReady
@@ -32,7 +32,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+         
           <div>
             <h3 className="text-lg font-semibold text-white mb-4 border-b border-indigo-500 inline-block pb-1">
               Quick Links
@@ -70,7 +70,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Resources */}
+       
           <div>
             <h3 className="text-lg font-semibold text-white mb-4 border-b border-indigo-500 inline-block pb-1">
               Resources
@@ -99,7 +99,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+        
           <div>
             <h3 className="text-lg font-semibold text-white mb-4 border-b border-indigo-500 inline-block pb-1">
               Contact Us
@@ -112,7 +112,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Line */}
+      
         <div className="border-t border-indigo-700 mt-10 pt-6 text-center text-gray-400 text-sm">
           &copy; {new Date().getFullYear()} SkillReady. All rights reserved.
         </div>

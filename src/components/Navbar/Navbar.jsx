@@ -63,7 +63,7 @@ const handleLogout = () => {
       showAlert("success", "You have logged out successfully!");
     })
     .catch((error) => {
-      showAlert("error", "Logout failed. Please try again!");
+      showAlert(error.code, "Logout failed. Please try again!");
     });
 };
 

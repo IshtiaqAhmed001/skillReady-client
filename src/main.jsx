@@ -17,11 +17,13 @@ import EnrolledCourses from "./Pages/EnrolledCourses/EnrolledCourses.jsx";
 import AddCourse from "./Pages/AddCourse/AddCourse.jsx";
 import MyAddedCourses from "./Pages/MyAddedCourses/MyAddedCourses.jsx";
 import DashboardHome from "./Pages/DashboardHome/DashboardHome.jsx";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
@@ -35,38 +37,55 @@ const router = createBrowserRouter([
   {
     path: "/auth/login",
     Component: Login,
+    errorElement: <ErrorPage></ErrorPage>,
   },
   {
     path: "/auth/register",
     Component: Register,
+    errorElement: <ErrorPage></ErrorPage>,
   },
   {
     path: "/dashboard",
-    element:<PrivateRoute>
-      <DashboardLayout></DashboardLayout>
-    </PrivateRoute>,
-    children:[
-      {index:'true',
-        element:<PrivateRoute>
-         <DashboardHome/>
-        </PrivateRoute>
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        index: "true",
+        element: (
+          <PrivateRoute>
+            <DashboardHome />
+          </PrivateRoute>
+        ),
       },
-      {path:'enrolledCourses',
-        element:<PrivateRoute>
-          <EnrolledCourses></EnrolledCourses>
-        </PrivateRoute>
+      {
+        path: "enrolledCourses",
+        element: (
+          <PrivateRoute>
+            <EnrolledCourses></EnrolledCourses>
+          </PrivateRoute>
+        ),
       },
-      {path:'addCourse',
-        element:<PrivateRoute>
-          <AddCourse></AddCourse>
-        </PrivateRoute>
+      {
+        path: "addCourse",
+        element: (
+          <PrivateRoute>
+            <AddCourse></AddCourse>
+          </PrivateRoute>
+        ),
       },
-      {path:'addedCourses',
-        element:<PrivateRoute>
-         <MyAddedCourses></MyAddedCourses>
-        </PrivateRoute>
+      {
+        path: "addedCourses",
+        element: (
+          <PrivateRoute>
+            <MyAddedCourses></MyAddedCourses>
+          </PrivateRoute>
+        ),
       },
-    ]
+    ],
   },
 ]);
 

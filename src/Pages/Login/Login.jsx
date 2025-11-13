@@ -35,7 +35,7 @@ const Login = () => {
         navigate("/");
       })
       .catch((error) => {
-       showAlert("error", `Login failed: ${error.message}`);
+       showAlert("error", `Login failed: ${error.code}`);
       });
   };
 

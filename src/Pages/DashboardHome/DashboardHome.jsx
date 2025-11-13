@@ -15,13 +15,13 @@ const DashboardHome = () => {
       axios
         .get(`http://localhost:3000/courses?createdBy=${user.email}`)
         .then((res) => setAddedCoursesCount(res.data.length))
-        .catch((err) => showAlert("error", "Failed to fetch added courses!"));
+        .catch((err) => showAlert(err.code, "Failed to fetch added courses!"));
 
       axios
         .get(`http://localhost:3000/enroll?email=${user.email}`)
         .then((res) => setEnrolledCoursesCount(res.data.length))
         .catch((err) =>
-          showAlert("error", "Failed to fetch enrolled courses!")
+          showAlert(err.code, "Failed to fetch enrolled courses!")
         );
     }
   }, [user, showAlert]);

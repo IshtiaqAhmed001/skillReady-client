@@ -47,7 +47,7 @@ const MyAddedCourses = () => {
         showAlert("success", "Course updated successfully!");
       }
     } catch (error) {
-      showAlert(error.message, "Error updating course!");
+      showAlert(error.code, "Error updating course!");
     }
   };
 
