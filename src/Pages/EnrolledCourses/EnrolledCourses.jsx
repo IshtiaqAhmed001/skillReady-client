@@ -8,12 +8,12 @@ const EnrolledCourses = () => {
   const [enrolled, setEnrolled] = useState([]);
   const { user } = useContext(AuthContext);
 
-  const showAlert = useAlert(); 
+  const showAlert = useAlert();
 
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/enroll?email=${user.email}`)
+        .get(`https://skill-ready-server.vercel.app/enroll?email=${user.email}`)
         .then((res) => setEnrolled(res.data))
         .catch((err) => console.error("Error fetching enrolled courses:", err));
     }
@@ -21,7 +21,7 @@ const EnrolledCourses = () => {
 
   const handleUnenroll = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/enroll/${id}`);
+      await axios.delete(`https://skill-ready-server.vercel.app/enroll/${id}`);
 
       setEnrolled((prev) => prev.filter((course) => course._id !== id));
 

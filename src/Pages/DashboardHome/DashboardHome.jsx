@@ -13,12 +13,14 @@ const DashboardHome = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/courses?createdBy=${user.email}`)
+        .get(
+          `https://skill-ready-server.vercel.app/courses?createdBy=${user.email}`
+        )
         .then((res) => setAddedCoursesCount(res.data.length))
         .catch((err) => showAlert(err.code, "Failed to fetch added courses!"));
 
       axios
-        .get(`http://localhost:3000/enroll?email=${user.email}`)
+        .get(`https://skill-ready-server.vercel.app/enroll?email=${user.email}`)
         .then((res) => setEnrolledCoursesCount(res.data.length))
         .catch((err) =>
           showAlert(err.code, "Failed to fetch enrolled courses!")

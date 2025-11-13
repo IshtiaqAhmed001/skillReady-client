@@ -15,7 +15,9 @@ const MyAddedCourses = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/courses?createdBy=${user.email}`)
+        .get(
+          `https://skill-ready-server.vercel.app/courses?createdBy=${user.email}`
+        )
         .then((res) => setMyCourses(res.data))
         .catch((err) => console.log(err));
     }
@@ -37,7 +39,7 @@ const MyAddedCourses = () => {
     try {
       const updatedCourse = { title, category, price, image, description };
       const result = await axios.put(
-        `http://localhost:3000/courses/${selectedCourse._id}`,
+        `https://skill-ready-server.vercel.app/courses/${selectedCourse._id}`,
         updatedCourse
       );
       if (result.data.modifiedCount) {
@@ -50,27 +52,28 @@ const MyAddedCourses = () => {
 
   const handleView = (id) => navigate(`/allCourses/${id}`);
 
-const handleDelete = async (id) => {
-  const confirmDelete = window.confirm(
-    "Are you sure you want to delete this course? This action cannot be undone."
-  );
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this course? This action cannot be undone."
+    );
 
-  if (!confirmDelete) return; // If user cancels, do nothing
+    if (!confirmDelete) return; // If user cancels, do nothing
 
-  try {
-    const result = await axios.delete(`http://localhost:3000/courses/${id}`);
-    if (result.data.deletedCount) {
-      showAlert("success", "Course deleted successfully!");
+    try {
+      const result = await axios.delete(
+        `https://skill-ready-server.vercel.app/courses/${id}`
+      );
+      if (result.data.deletedCount) {
+        showAlert("success", "Course deleted successfully!");
 
-      // Simple way to update state
-      const updatedCourses = myCourses.filter((course) => course._id !== id);
-      setMyCourses(updatedCourses);
+        // Simple way to update state
+        const updatedCourses = myCourses.filter((course) => course._id !== id);
+        setMyCourses(updatedCourses);
+      }
+    } catch (error) {
+      showAlert(error.code || "error", "Failed to delete course!");
     }
-  } catch (error) {
-    showAlert(error.code || "error", "Failed to delete course!");
-  }
-};
-
+  };
 
   return (
     <div className="max-w-11/12 mx-auto my-6 sm:my-10">

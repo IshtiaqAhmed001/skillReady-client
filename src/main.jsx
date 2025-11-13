@@ -27,7 +27,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:3000/popular-courses"),
+        loader: () =>
+          fetch("https://skill-ready-server.vercel.app/popular-courses"),
         Component: Home,
       },
       { path: "/allCourses", Component: AllCourses },

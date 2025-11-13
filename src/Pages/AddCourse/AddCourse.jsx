@@ -42,7 +42,7 @@ const AddCourse = () => {
   useEffect(() => {
     if (newCourse) {
       axios
-        .post("http://localhost:3000/courses", newCourse)
+        .post("https://skill-ready-server.vercel.app/courses", newCourse)
         .then((result) => {
           showAlert("success", "New Course added successfully!");
         })

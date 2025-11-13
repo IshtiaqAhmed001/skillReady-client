@@ -19,7 +19,7 @@ const CourseDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/courses/${id}`)
+      .get(`https://skill-ready-server.vercel.app/courses/${id}`)
       .then((res) => {
         setCourse(res.data[0]);
       })
@@ -43,10 +43,13 @@ const CourseDetails = () => {
 
   const handleEnrollNow = async (id, email) => {
     try {
-      const result = await axios.post("http://localhost:3000/enroll", {
-        id,
-        email,
-      });
+      const result = await axios.post(
+        "https://skill-ready-server.vercel.app/enroll",
+        {
+          id,
+          email,
+        }
+      );
       showAlert("success", "Successfully enrolled into course!");
     } catch (error) {
       console.error("Error enrolling into course:", error);
