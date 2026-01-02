@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 import SingleCourse from "../../components/SingleCourse/SingleCourse";
 import axios from "axios";
+import Loader from "../../components/Loader/Loader";
 
 const AllCourses = () => {
+  const [loading, setLoading] = useState(true);
   const [courses, setCourses] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get("https://skill-ready-server.vercel.app/courses")
       .then((res) => {
         setCourses(res.data);
         setFiltered(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   const handleFilter = (searchValue, categoryValue) => {
@@ -30,6 +36,16 @@ const AllCourses = () => {
     });
     setFiltered(filteredCourses);
   };
+
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-[60vh]">
+        <Loader />
+      </div>
+    );
+  }
+
 
   return (
     <div className="max-w-11/12 mx-auto py-8 sm:py-10 md:py-12">
