@@ -9,71 +9,36 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `px-3 py-2 rounded-md font-medium transition ${
-              isActive
-                ? "bg-blue-50 text-blue-900"
-                : "text-gray-700 hover:bg-indigo-50 hover:text-blue-900"
-            }`
-          }
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/allCourses"
-          className={({ isActive }) =>
-            `px-3 py-2 rounded-md font-medium transition ${
-              isActive
-                ? "bg-indigo-100 text-blue-900"
-                : "text-gray-700 hover:bg-indigo-50 hover:text-blue-900"
-            }`
-          }
-        >
-          All Courses
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/contact"
-          className={({ isActive }) =>
-            `px-3 py-2 rounded-md font-medium transition ${
-              isActive
-                ? "bg-indigo-100 text-blue-900"
-                : "text-gray-700 hover:bg-indigo-50 hover:text-blue-900"
-            }`
-          }
-        >
-          Contact
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            `px-3 py-2 rounded-md font-medium transition ${
-              isActive
-                ? "bg-indigo-100 text-blue-900"
-                : "text-gray-700 hover:bg-indigo-50 hover:text-blue-900"
-            }`
-          }
-        >
-          About
-        </NavLink>
-      </li>
+      {[
+        { name: "Home", to: "/" },
+        { name: "All Courses", to: "/allCourses" },
+        { name: "Contact", to: "/contact" },
+        { name: "About", to: "/about" },
+      ].map((link) => (
+        <li key={link.name}>
+          <NavLink
+            to={link.to}
+            className={({ isActive }) =>
+              `px-3 py-2 rounded-md font-medium transition-colors duration-300 ${
+                isActive
+                  ? "bg-blue-100 text-blue-900"
+                  : "text-gray-700 hover:bg-blue-50 hover:text-blue-900"
+              }`
+            }
+          >
+            {link.name}
+          </NavLink>
+        </li>
+      ))}
       {user && (
         <li>
           <NavLink
             to="/dashboard"
             className={({ isActive }) =>
-              `px-3 py-2 rounded-md font-medium transition ${
+              `px-3 py-2 rounded-md font-medium transition-colors duration-300 ${
                 isActive
-                  ? "bg-indigo-100 text-blue-900"
-                  : "text-gray-700 hover:bg-indigo-50 hover:text-blue-900"
+                  ? "bg-blue-100 text-blue-900"
+                  : "text-gray-700 hover:bg-blue-50 hover:text-blue-900"
               }`
             }
           >
@@ -106,7 +71,7 @@ const Navbar = () => {
           <div className="shrink-0">
             <Link
               to="/"
-              className="text-primary text-2xl font-bold tracking-wider hover:text-blue-900 transition"
+              className="text-primary text-2xl font-bold tracking-wider hover:text-blue-900 transition-colors duration-300"
             >
               SkillReady
             </Link>
@@ -118,28 +83,38 @@ const Navbar = () => {
           </div>
 
           {/* Right Side */}
-          <div className="flex items-center gap-2">
-            {/* Theme Toggle Button always visible */}
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
             <button
               onClick={handleThemeToggle}
-              className="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded-md text-sm transition"
+              className="bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-md text-sm transition-colors duration-300"
+              title="Toggle Theme"
             >
               🌓
             </button>
 
             {user ? (
               <>
+                {/* Avatar */}
                 {user.photoURL && (
                   <img
                     src={user.photoURL}
-                    className="w-8 h-8 rounded-full hidden sm:block"
-                    alt=""
+                    className="w-8 h-8 rounded-full hidden sm:block border-2 border-blue-200"
+                    alt={user.displayName || "User"}
                   />
                 )}
-                {/* Logout only for md and above */}
+
+                {/* Display Name */}
+                {user.displayName && (
+                  <span className="hidden sm:inline bg-blue-50 text-blue-900 px-2 py-1 rounded-full font-medium transition-colors duration-300">
+                    {user.displayName.split(' ')[0]}
+                  </span>
+                )}
+
+                {/* Logout */}
                 <button
                   onClick={handleLogout}
-                  className="ml-2 bg-red-100 hover:bg-red-200 text-red-600 px-3 py-1 rounded-md text-sm transition hidden md:block"
+                  className="ml-2 bg-red-100 hover:bg-red-200 text-red-600 px-3 py-1 rounded-md text-sm transition-colors duration-300 hidden md:block"
                 >
                   Logout
                 </button>
@@ -147,7 +122,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/auth/login"
-                className="bg-primary text-white hover:bg-indigo-800 px-4 py-2 rounded-lg font-medium transition text-sm sm:text-base"
+                className="bg-primary text-white hover:bg-indigo-800 px-4 py-2 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base"
               >
                 Login
               </Link>
