@@ -51,6 +51,20 @@ const Navbar = () => {
           Contact
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            `px-3 py-2 rounded-md font-medium transition ${
+              isActive
+                ? "bg-indigo-100 text-blue-900"
+                : "text-gray-700 hover:bg-indigo-50 hover:text-blue-900"
+            }`
+          }
+        >
+          About
+        </NavLink>
+      </li>
       {user && (
         <li>
           <NavLink

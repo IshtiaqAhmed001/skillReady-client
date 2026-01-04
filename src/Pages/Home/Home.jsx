@@ -6,7 +6,6 @@ import PopularCourses from "../../components/PopularCourses/PopularCourses";
 import WhyChooseUs from "../../components/WhyChooseUs/WhyChooseUs";
 import TopInstructors from "../../components/TopInstructors/TopInstructors";
 import axios, { Axios } from "axios";
-import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
   const [popularCourses, setPopularCourses] = useState([]);
@@ -33,13 +32,6 @@ const Home = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[60vh]">
-        <Loader />
-      </div>
-    );
-  }
 
   return (
     <div>
@@ -79,7 +71,7 @@ const Home = () => {
           <span className="text-primary">Popular</span> Online Courses
         </h2>
 
-        <PopularCourses courses={featuredCourses} />
+        <PopularCourses courses={featuredCourses} loading={loading} />
       </motion.section>
 
       <motion.div

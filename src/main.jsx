@@ -19,6 +19,7 @@ import MyAddedCourses from "./Pages/MyAddedCourses/MyAddedCourses.jsx";
 import DashboardHome from "./Pages/DashboardHome/DashboardHome.jsx";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
 import Contact from "./Pages/Contact/Contact.jsx";
+import About from "./Pages/About/About.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: "/allCourses", Component: AllCourses },
       { path: "/allCourses/:id", Component: CourseDetails },
       { path: "/contact", Component: Contact },
+      { path: "/about", Component: About },
     ],
   },
   {

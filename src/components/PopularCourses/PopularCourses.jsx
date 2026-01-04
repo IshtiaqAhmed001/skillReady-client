@@ -1,7 +1,15 @@
 import React from "react";
 import SingleCourse from "../SingleCourse/SingleCourse";
+import Loader from "../Loader/Loader";
 
-const PopularCourses = ({ courses }) => {
+const PopularCourses = ({ courses,loading }) => {
+    if (loading) {
+      return (
+        <div className="flex justify-center items-center min-h-[60vh]">
+          <Loader />
+        </div>
+      );
+    }
   return (
     <div className="max-w-11/12 mx-auto">
      
