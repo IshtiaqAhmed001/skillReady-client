@@ -21,7 +21,7 @@ SkillReady is an online learning platform designed to help learners upgrade thei
 
 ## Project Structure
 
-- **Pages:** Home, AllCourses, CourseDetails, Dashboard, Login, Register
+- **Pages:** Home, AllCourses, CourseDetails,Contact, About, Dashboard, Login, Register
 - **Components:** HeroSection, PopularCourses, WhyChooseUs, TopInstructors, SingleCourse
 - **Contexts:** AuthProvider for authentication
 - **Layouts:** RootLayout, DashboardLayout
