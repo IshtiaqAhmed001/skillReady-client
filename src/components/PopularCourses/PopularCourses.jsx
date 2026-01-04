@@ -3,6 +3,7 @@ import SingleCourse from "../SingleCourse/SingleCourse";
 import Loader from "../Loader/Loader";
 
 const PopularCourses = ({ courses,loading }) => {
+  
     if (loading) {
       return (
         <div className="flex justify-center items-center min-h-[60vh]">
