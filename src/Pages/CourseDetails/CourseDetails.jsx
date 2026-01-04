@@ -21,7 +21,7 @@ const CourseDetails = () => {
     axios
       .get(`https://skill-ready-server.vercel.app/courses/${id}`)
       .then((res) => {
-        setCourse(res.data[0]);
+        setCourse(res.data);
       })
       .catch((error) => {
         console.error("Error fetching course details:", error);
