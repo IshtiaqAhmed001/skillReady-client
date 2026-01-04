@@ -1,20 +1,45 @@
-import React from "react";
-import { Link, useLoaderData } from "react-router";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { motion } from "framer-motion";
 import HeroSection from "../../components/HeroSection/HeroSection";
 import PopularCourses from "../../components/PopularCourses/PopularCourses";
 import WhyChooseUs from "../../components/WhyChooseUs/WhyChooseUs";
 import TopInstructors from "../../components/TopInstructors/TopInstructors";
+import axios, { Axios } from "axios";
+import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
-  const courses = useLoaderData();
-  const popularCourses = courses.slice(1, 7);
+  const [popularCourses, setPopularCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+
+    axios
+      .get("https://skill-ready-server.vercel.app/popular-courses")
+      .then((res) => {
+        setPopularCourses(res.data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  const featuredCourses = popularCourses.slice(0, 6);
 
   // Simple fade-up animation
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-[60vh]">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -46,15 +71,15 @@ const Home = () => {
 
       <motion.section
         className="mt-12 sm:mt-16 md:mt-20"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={fadeUp}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
       >
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 text-center mb-8 sm:mb-10 md:mb-12">
           <span className="text-primary">Popular</span> Online Courses
         </h2>
-        <PopularCourses courses={popularCourses} />
+
+        <PopularCourses courses={featuredCourses} />
       </motion.section>
 
       <motion.div
