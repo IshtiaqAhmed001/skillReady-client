@@ -19,25 +19,26 @@ const AllCourses = () => {
         setFiltered(res.data);
       })
       .catch((err) => console.log(err))
-      .finally(() => {
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   }, []);
 
-  const handleFilter = (searchValue, categoryValue) => {
-    const filteredCourses = courses.filter((course) => {
-      const matchesSearch = course.title
-        .toLowerCase()
-        .includes(searchValue.toLowerCase());
-      const matchesCategory = categoryValue
-        ? course.category === categoryValue
-        : true;
-      return matchesSearch && matchesCategory;
-    });
-    setFiltered(filteredCourses);
-  };
+const handleFilter = (searchValue, categoryValue) => {
+  const filteredCourses = courses.filter((course) => {
+    // Search matches title OR category
+    const matchesSearch =
+      course.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+      course.category.toLowerCase().includes(searchValue.toLowerCase());
 
+    // Category filter from dropdown
+    const matchesCategory = categoryValue
+      ? course.category === categoryValue
+      : true;
 
+    return matchesSearch && matchesCategory;
+  });
+
+  setFiltered(filteredCourses);
+};
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
@@ -46,21 +47,22 @@ const AllCourses = () => {
     );
   }
 
-
   return (
-    <div className="max-w-11/12 mx-auto py-8 sm:py-10 md:py-12">
-      <div className="text-center mb-8 sm:mb-10 md:mb-12">
-        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-800">
-          Skills to Transform{" "}
-          <span className="text-blue-900">Your Career and Life</span>
+    <div className="max-w-11/12 mx-auto py-12 sm:py-16">
+      {/* Header */}
+      <div className="text-center mb-12 sm:mb-16">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900">
+          Transform Your Career with{" "}
+          <span className="text-blue-900">SkillReady</span>
         </h1>
-        <p className="text-sm sm:text-base md:text-lg text-gray-600 mt-2 sm:mt-3 md:mt-4 max-w-2xl mx-auto">
-          From creative skills to technical expertise, SkillReady helps you
-          learn from the best — anytime, anywhere.
+        <p className="mt-3 sm:mt-4 text-gray-600 text-base sm:text-lg md:text-xl max-w-3xl mx-auto">
+          From creative skills to technical expertise, learn from the best —
+          anytime, anywhere.
         </p>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
+      {/* Search & Filter in card style */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-12 bg-white p-6 sm:p-8 rounded-2xl shadow-md">
         <input
           type="text"
           placeholder="Search courses..."
@@ -70,7 +72,7 @@ const AllCourses = () => {
             setSearch(value);
             handleFilter(value, selectedCategory);
           }}
-          className="input input-bordered w-full sm:w-3/5 md:w-1/2 shadow-sm focus:border-blue-900 focus:ring-2 focus:ring-blue-200"
+          className="input input-bordered w-full sm:w-3/5 md:w-1/2 shadow-sm focus:border-blue-900 focus:ring-2 focus:ring-blue-200 rounded-lg"
         />
 
         <select
@@ -80,7 +82,7 @@ const AllCourses = () => {
             setSelectedCategory(category);
             handleFilter(search, category);
           }}
-          className="select select-bordered w-full sm:w-2/5 md:w-1/4 border-blue-900 text-blue-900"
+          className="select select-bordered w-full sm:w-2/5 md:w-1/4 border-blue-900 text-blue-900 rounded-lg"
         >
           <option value="">Filter by Category</option>
           <option value="Web Development">Web Development</option>
@@ -90,15 +92,31 @@ const AllCourses = () => {
         </select>
       </div>
 
+      {/* Courses Grid */}
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-6 md:gap-8">
           {filtered.map((course) => (
-            <SingleCourse key={course._id} course={course} />
+            <div
+              key={course._id}
+              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 hover:scale-105 border border-gray-100 overflow-hidden"
+            >
+              {/* Optional: add gradient header */}
+              <div className="bg-linear-to-r from-blue-100 via-blue-50 to-blue-100 p-3">
+                <h3 className="text-lg font-semibold text-gray-800 truncate">
+                  {course.category}
+                </h3>
+              </div>
+
+              {/* Course card content */}
+              <div className="p-4">
+                <SingleCourse course={course} />
+              </div>
+            </div>
           ))}
         </div>
       ) : (
-        <div className="text-center mt-12 sm:mt-16 md:mt-20">
-          <p className="text-gray-500 text-base sm:text-lg md:text-xl animate-pulse">
+        <div className="text-center mt-16">
+          <p className="text-gray-500 text-lg sm:text-xl md:text-2xl animate-pulse">
             No courses found. Try searching for something else.
           </p>
         </div>
